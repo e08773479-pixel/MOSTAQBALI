@@ -2,73 +2,48 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#07110e">
-  <meta name="color-scheme" content="dark">
-  <meta name="description" content="NOVA SOCIAL — مساحة اجتماعية تجمعك بالأشخاص والمجتمعات والمحادثات في مكان واحد.">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="NOVA SOCIAL">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="NOVA SOCIAL — منصة اجتماعية حديثة للتواصل والمراسلة والمجتمعات.">
+  <title>NOVA SOCIAL — نوفا</title>
 
-  <title>NOVA SOCIAL — عالمك الاجتماعي</title>
-
-  <link rel="manifest" href="./manifest.json">
-  <link rel="icon" type="image/svg+xml" href="./icon.svg">
-  <link rel="apple-touch-icon" href="./icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
   <style>
     :root {
-      --bg: #07110e;
-      --bg-soft: #0b1712;
-      --panel: #101e17;
-      --panel-2: #14251c;
-      --panel-3: #1a3024;
-      --green: #27e58a;
-      --green-dark: #14ad65;
-      --green-soft: rgba(39,229,138,.12);
-      --text: #f3fff7;
-      --muted: #93aa9a;
-      --border: rgba(210,255,224,.09);
-      --danger: #ff6576;
-      --warning: #ffcf70;
-      --blue: #76b8ff;
-      --radius: 20px;
-      --sidebar-width: 255px;
-      --shadow: 0 18px 55px rgba(0,0,0,.24);
+      --bg: #07111f;
+      --surface: #0d1a2b;
+      --surface2: #122238;
+      --surface3: #182b43;
+      --primary: #20d47b;
+      --primary-dark: #12a85e;
+      --text: #f1f6fc;
+      --muted: #8da0b7;
+      --border: rgba(255,255,255,.08);
+      --danger: #ff5364;
+      --radius: 18px;
+      --nav-height: 76px;
     }
 
     * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
     }
 
     html {
-      min-height: 100%;
       scroll-behavior: smooth;
-      background: var(--bg);
+      -webkit-tap-highlight-color: transparent;
     }
 
     body {
       margin: 0;
       min-height: 100vh;
-      min-height: 100dvh;
+      font-family: "Cairo", sans-serif;
       background:
-        radial-gradient(ellipse at 90% 0%, rgba(24,120,76,.12), transparent 32%),
-        radial-gradient(ellipse at 0% 90%, rgba(30,95,62,.09), transparent 30%),
+        radial-gradient(ellipse at top right, rgba(32,212,123,.07), transparent 40%),
         var(--bg);
       color: var(--text);
-      font-family: "Cairo", sans-serif;
-      font-size: 14px;
-      overflow-x: hidden;
-    }
-
-    body.modal-open {
-      overflow: hidden;
     }
 
     button, input, textarea, select {
@@ -76,684 +51,445 @@
     }
 
     button {
-      color: inherit;
       cursor: pointer;
     }
 
     button:focus-visible,
     input:focus-visible,
-    textarea:focus-visible {
-      outline: 2px solid var(--green);
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 2px solid var(--primary);
       outline-offset: 3px;
-    }
-
-    button:disabled {
-      opacity: .55;
-      cursor: not-allowed;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img, video {
-      max-width: 100%;
     }
 
     .hidden {
       display: none !important;
     }
 
-    .muted {
-      color: var(--muted);
+    .screen {
+      min-height: 100vh;
     }
 
-    .small {
-      font-size: 12px;
-    }
+    /* Splash screen */
 
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      min-width: 0;
-    }
-
-    .brand-mark {
-      display: grid;
-      place-items: center;
-      width: 46px;
-      height: 46px;
-      flex: 0 0 46px;
-      border: 1px solid rgba(73,255,166,.35);
-      border-radius: 16px;
-      background: linear-gradient(145deg, #36f6a0, #0a8e53);
-      color: #062315;
-      box-shadow: 0 7px 24px rgba(39,229,138,.16);
-      font-size: 25px;
-      font-weight: 900;
-      letter-spacing: -3px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      width: 48px;
-      height: 48px;
-      border: 1px solid rgba(255,255,255,.32);
-      border-radius: 50%;
-      transform: translate(19px, -20px);
-    }
-
-    .brand-name {
-      margin: 0;
-      font-size: 21px;
-      line-height: 1.25;
-      font-weight: 900;
-      letter-spacing: -.7px;
-    }
-
-    .brand-name span {
-      color: var(--green);
-    }
-
-    .brand-caption {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 500;
-    }
-
-    .btn {
-      min-height: 42px;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: var(--panel-2);
-      color: var(--text);
-      transition: background .18s, transform .18s, border-color .18s;
-    }
-
-    .btn:hover {
-      background: var(--panel-3);
-      border-color: rgba(39,229,138,.28);
-    }
-
-    .btn:active {
-      transform: scale(.98);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #31ee97, #13b56a);
-      color: #052416;
-      border-color: transparent;
-      font-weight: 800;
-    }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, #5af7ac, #21c97b);
-    }
-
-    .btn-ghost {
-      background: transparent;
-    }
-
-    .btn-danger {
-      color: #ff8793;
-      background: rgba(255,101,118,.08);
-      border-color: rgba(255,101,118,.16);
-    }
-
-    .icon-btn {
-      display: inline-grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: rgba(255,255,255,.025);
-      color: var(--muted);
-      font-size: 16px;
-      transition: .18s;
-    }
-
-    .icon-btn:hover {
-      color: var(--green);
-      border-color: rgba(39,229,138,.25);
-      background: var(--green-soft);
-    }
-
-    .field {
-      display: grid;
-      gap: 7px;
-      margin-bottom: 15px;
-    }
-
-    .field label {
-      color: #d9e9de;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .input-wrap {
-      position: relative;
-    }
-
-    .input-wrap > i {
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      pointer-events: none;
-    }
-
-    .input,
-    .textarea {
-      display: block;
-      width: 100%;
-      min-height: 47px;
-      padding: 12px 15px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: #09140e;
-      color: var(--text);
-      outline: none;
-      transition: border-color .2s, box-shadow .2s;
-    }
-
-    .input-wrap .input {
-      padding-right: 43px;
-    }
-
-    .input::placeholder,
-    .textarea::placeholder {
-      color: #607669;
-    }
-
-    .input:focus,
-    .textarea:focus {
-      border-color: rgba(39,229,138,.65);
-      box-shadow: 0 0 0 3px rgba(39,229,138,.07);
-    }
-
-    .textarea {
-      min-height: 105px;
-      resize: vertical;
-    }
-
-    /* شاشة البداية */
-
-    #boot-screen {
+    #loading-screen {
       position: fixed;
-      z-index: 10000;
       inset: 0;
+      z-index: 99999;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
-      overflow: auto;
+      overflow: hidden;
       background:
-        radial-gradient(ellipse at 50% 38%, rgba(39,229,138,.13), transparent 35%),
-        #06100b;
+        radial-gradient(circle at 50% 38%, rgba(32,212,123,.17), transparent 32%),
+        linear-gradient(145deg, #06101d, #0b1b2c 55%, #06101d);
       transition: opacity .35s ease, visibility .35s ease;
     }
 
-    #boot-screen.boot-hidden {
+    #loading-screen.loading-exit {
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
     }
 
-    .boot-inner {
-      width: min(100%, 360px);
+    .splash-content {
+      width: 100%;
+      max-width: 380px;
       text-align: center;
     }
 
-    .boot-logo {
+    .brand-symbol {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 23px;
       display: grid;
       place-items: center;
-      width: 104px;
-      height: 104px;
-      margin: 0 auto 25px;
-      border: 1px solid rgba(77,255,168,.42);
-      border-radius: 32px;
-      background: linear-gradient(145deg, #35f6a0, #087a48);
-      color: #052515;
-      box-shadow: 0 0 0 12px rgba(39,229,138,.035), 0 0 75px rgba(39,229,138,.15);
-      font-size: 56px;
-      font-weight: 900;
-      letter-spacing: -7px;
-      animation: logo-in .7s ease both;
+      position: relative;
+      border-radius: 29px;
+      background: linear-gradient(145deg, #2ae88d, #0b9c57);
+      box-shadow: 0 0 65px rgba(32,212,123,.24);
+      transform: rotate(-4deg);
     }
 
-    .boot-title {
+    .brand-symbol::before {
+      content: "";
+      position: absolute;
+      width: 46px;
+      height: 35px;
+      border: 5px solid #062017;
+      border-radius: 13px;
+      transform: rotate(4deg);
+    }
+
+    .brand-symbol::after {
+      content: "";
+      position: absolute;
+      bottom: 24px;
+      right: 25px;
+      width: 13px;
+      height: 13px;
+      border-right: 5px solid #062017;
+      border-bottom: 5px solid #062017;
+      transform: rotate(45deg);
+    }
+
+    .brand-symbol span {
+      position: relative;
+      z-index: 1;
+      color: #062017;
+      font-size: 29px;
+      font-weight: 900;
+      transform: rotate(4deg);
+    }
+
+    .brand-name {
       margin: 0;
-      font-size: 31px;
+      font-size: clamp(32px, 8vw, 44px);
       font-weight: 900;
-      letter-spacing: -1px;
+      letter-spacing: 2px;
     }
 
-    .boot-title span {
-      color: var(--green);
+    .brand-name span {
+      color: var(--primary);
     }
 
-    .boot-subtitle {
-      margin: 9px 0 27px;
+    .brand-subtitle {
+      margin: 7px 0 34px;
       color: var(--muted);
       font-size: 13px;
     }
 
-    .boot-track {
-      height: 4px;
-      width: 180px;
-      margin: 0 auto 15px;
+    .loader-track {
+      width: 100%;
+      height: 5px;
       overflow: hidden;
       border-radius: 20px;
-      background: #1a2d22;
+      background: rgba(255,255,255,.09);
     }
 
-    .boot-track span {
-      display: block;
+    .loader-progress {
+      width: 0;
       height: 100%;
-      width: 40%;
       border-radius: inherit;
-      background: var(--green);
-      animation: boot-progress 1.25s ease-in-out infinite;
+      background: linear-gradient(90deg, #0ba95b, #39f49a);
+      animation: loading-progress 5s linear forwards;
     }
 
-    .boot-status {
-      color: #779083;
-      font-size: 11px;
-    }
-
-    .boot-retry {
-      display: none;
-      margin: 20px auto 0;
-    }
-
-    #boot-screen.boot-error .boot-track {
-      display: none;
-    }
-
-    #boot-screen.boot-error .boot-retry {
-      display: inline-flex;
-    }
-
-    @keyframes boot-progress {
-      0% { transform: translateX(-180%); }
-      100% { transform: translateX(450%); }
-    }
-
-    @keyframes logo-in {
-      from { opacity: 0; transform: translateY(12px) scale(.9); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* المصادقة */
-
-    #auth-screen {
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(360px, .85fr);
-      align-items: stretch;
-      padding: 24px;
-      gap: 24px;
-    }
-
-    .auth-visual {
-      min-height: 600px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: clamp(25px, 5vw, 65px);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      background:
-        radial-gradient(ellipse at 20% 25%, rgba(39,229,138,.18), transparent 35%),
-        radial-gradient(ellipse at 90% 90%, rgba(30,117,75,.20), transparent 40%),
-        linear-gradient(145deg, #12281b, #09140d 72%);
-    }
-
-    .auth-visual::before,
-    .auth-visual::after {
-      content: "";
-      position: absolute;
-      border: 1px solid rgba(91,246,166,.12);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .auth-visual::before {
-      width: 420px;
-      height: 420px;
-      left: -150px;
-      bottom: -150px;
-      box-shadow: 0 0 0 35px rgba(39,229,138,.018), 0 0 0 75px rgba(39,229,138,.014);
-    }
-
-    .auth-visual::after {
-      width: 240px;
-      height: 240px;
-      right: -95px;
-      top: 100px;
-    }
-
-    .auth-visual-content {
-      position: relative;
-      z-index: 1;
-      max-width: 520px;
-      margin: auto 0;
-    }
-
-    .auth-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 13px;
-      border: 1px solid rgba(39,229,138,.18);
-      border-radius: 50px;
-      background: rgba(39,229,138,.07);
-      color: var(--green);
+    .loading-caption {
+      margin-top: 14px;
+      color: #9cb1c6;
       font-size: 12px;
     }
 
-    .auth-hero-title {
-      margin: 24px 0 16px;
-      font-size: clamp(34px, 4.5vw, 58px);
-      line-height: 1.4;
-      font-weight: 900;
-      letter-spacing: -1.5px;
+    @keyframes loading-progress {
+      from { width: 0; }
+      to { width: 100%; }
     }
 
-    .auth-hero-title span {
-      color: var(--green);
+    /* Common */
+
+    .primary-btn {
+      border: 0;
+      border-radius: 13px;
+      padding: 12px 18px;
+      background: var(--primary);
+      color: #052014;
+      font-weight: 800;
+      transition: .2s;
     }
 
-    .auth-hero-description {
-      max-width: 420px;
-      color: #a8bdb0;
-      font-size: 15px;
-      line-height: 2.1;
+    .primary-btn:hover {
+      background: #45e895;
+      transform: translateY(-1px);
     }
 
-    .auth-feature-list {
+    .secondary-btn {
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 11px 16px;
+      background: var(--surface2);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .text-btn {
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      padding: 8px;
+    }
+
+    .field {
       display: grid;
-      gap: 15px;
-      margin-top: 30px;
+      gap: 7px;
+      margin-bottom: 16px;
     }
 
-    .auth-feature {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #d3e5d9;
+    .field label {
+      color: #c5d2e0;
       font-size: 13px;
+      font-weight: 700;
     }
 
-    .auth-feature i {
-      width: 35px;
-      height: 35px;
-      display: grid;
-      place-items: center;
-      border-radius: 11px;
-      background: rgba(39,229,138,.09);
-      color: var(--green);
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 13px 14px;
+      color: var(--text);
+      background: #091524;
+      border: 1px solid var(--border);
+      border-radius: 12px;
     }
 
-    .auth-visual-footer {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: #71897a;
-      font-size: 11px;
+    .field textarea {
+      min-height: 105px;
+      resize: vertical;
     }
 
-    .auth-form-panel {
-      min-height: 600px;
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: #71849a;
+    }
+
+    /* Authentication */
+
+    #auth-screen {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(15px, 4vw, 45px);
+      padding: 24px 16px;
+      background:
+        radial-gradient(circle at top left, rgba(32,212,123,.08), transparent 38%),
+        var(--bg);
     }
 
-    .auth-form-box {
-      width: min(100%, 410px);
+    .auth-card {
+      width: 100%;
+      max-width: 430px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      background: rgba(13,26,43,.96);
+      box-shadow: 0 25px 80px rgba(0,0,0,.25);
     }
 
-    .auth-mobile-brand {
-      display: none;
-      margin-bottom: 32px;
+    .auth-brand {
+      text-align: center;
+      margin-bottom: 25px;
     }
 
-    .auth-heading {
-      margin: 0 0 8px;
-      font-size: 29px;
+    .auth-brand .brand-symbol {
+      width: 65px;
+      height: 65px;
+      margin-bottom: 13px;
+      border-radius: 20px;
+    }
+
+    .auth-brand .brand-symbol::before {
+      width: 33px;
+      height: 25px;
+      border-width: 4px;
+      border-radius: 9px;
+    }
+
+    .auth-brand .brand-symbol::after {
+      bottom: 16px;
+      right: 17px;
+      width: 9px;
+      height: 9px;
+      border-width: 4px;
+    }
+
+    .auth-brand .brand-symbol span {
+      font-size: 21px;
+    }
+
+    .auth-brand h1 {
+      margin: 0;
+      font-size: 27px;
       font-weight: 900;
     }
 
-    .auth-description {
-      margin: 0 0 28px;
+    .auth-brand p {
       color: var(--muted);
-      line-height: 1.9;
+      font-size: 13px;
+    }
+
+    .auth-heading {
+      margin-bottom: 20px;
+    }
+
+    .auth-heading h2 {
+      margin: 0 0 5px;
+      font-size: 21px;
+    }
+
+    .auth-heading p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .auth-submit {
       width: 100%;
-      margin-top: 5px;
+      margin-top: 4px;
+      padding: 14px;
     }
 
     .auth-switch {
-      margin: 22px 0 0;
+      margin-top: 18px;
       text-align: center;
       color: var(--muted);
-      font-size: 12px;
+      font-size: 13px;
     }
 
-    .text-button {
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: var(--green);
-      font-weight: 800;
-    }
-
-    .auth-links {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin: 15px 0;
-    }
-
-    .auth-error {
+    #auth-message {
       display: none;
+      margin-bottom: 14px;
       padding: 11px 13px;
-      margin-bottom: 15px;
-      border: 1px solid rgba(255,101,118,.22);
-      border-radius: 12px;
-      background: rgba(255,101,118,.08);
-      color: #ff9ba5;
-      font-size: 12px;
-      line-height: 1.8;
+      border-radius: 11px;
+      background: rgba(255,83,100,.1);
+      color: #ff9ca7;
+      font-size: 13px;
     }
 
-    .auth-error:not(:empty) {
+    #auth-message.show {
       display: block;
     }
 
-    .auth-success {
-      display: none;
-      padding: 11px 13px;
-      margin-bottom: 15px;
-      border: 1px solid rgba(39,229,138,.18);
-      border-radius: 12px;
-      background: var(--green-soft);
-      color: var(--green);
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .auth-success:not(:empty) {
-      display: block;
-    }
-
-    /* هيكل التطبيق */
+    /* Main application */
 
     #app-screen {
+      display: none;
       min-height: 100vh;
-      min-height: 100dvh;
     }
 
-    .app-shell {
-      display: grid;
-      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    #app-screen.active {
+      display: block;
+    }
+
+    .app-layout {
+      width: 100%;
+      max-width: 1440px;
       min-height: 100vh;
-      min-height: 100dvh;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
     }
 
     .sidebar {
       position: sticky;
       top: 0;
       height: 100vh;
-      height: 100dvh;
-      padding: 24px 17px;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      padding: 23px 15px;
+      background: rgba(9,21,36,.92);
       border-left: 1px solid var(--border);
-      background: rgba(8,20,13,.94);
-      overflow-y: auto;
-      z-index: 20;
     }
 
     .sidebar-brand {
-      padding: 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 8px 26px;
     }
 
-    .sidebar-label {
-      padding: 0 12px;
-      color: #607b6a;
+    .mini-brand-symbol {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #2ae88d, #0b9c57);
+      color: #052014;
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .sidebar-brand strong {
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .sidebar-brand small {
+      display: block;
+      color: var(--muted);
       font-size: 10px;
+    }
+
+    .nav-label {
+      padding: 8px 12px;
+      color: #70849b;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 1px;
     }
 
     .nav-list {
       display: grid;
-      gap: 6px;
+      gap: 5px;
     }
 
-    .nav-link {
+    .nav-btn {
       width: 100%;
       display: flex;
       align-items: center;
-      gap: 13px;
+      gap: 12px;
       padding: 12px 13px;
+      color: #a9b9ca;
+      background: transparent;
       border: 1px solid transparent;
       border-radius: 13px;
-      background: transparent;
-      color: #a5b8aa;
       text-align: right;
+      font-size: 13px;
+      font-weight: 700;
       transition: .18s;
     }
 
-    .nav-link > i {
-      width: 23px;
-      text-align: center;
-      font-size: 17px;
-    }
-
-    .nav-link:hover {
-      background: rgba(255,255,255,.025);
+    .nav-btn:hover {
+      background: rgba(255,255,255,.035);
       color: var(--text);
     }
 
-    .nav-link.active {
-      border-color: rgba(39,229,138,.12);
-      background: linear-gradient(90deg, rgba(39,229,138,.12), rgba(39,229,138,.035));
-      color: var(--green);
-      font-weight: 800;
+    .nav-btn.active {
+      color: var(--primary);
+      background: rgba(32,212,123,.09);
+      border-color: rgba(32,212,123,.12);
     }
 
-    .nav-count {
-      margin-right: auto;
-      min-width: 20px;
-      padding: 2px 6px;
-      border-radius: 20px;
-      background: rgba(255,101,118,.14);
-      color: #ff8997;
-      font-size: 10px;
+    .nav-icon {
+      width: 25px;
       text-align: center;
+      font-size: 19px;
     }
 
     .sidebar-bottom {
       margin-top: auto;
-      display: grid;
-      gap: 15px;
+      padding-top: 20px;
     }
 
-    .sidebar-profile {
+    .user-mini {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: rgba(255,255,255,.025);
-      min-width: 0;
-    }
-
-    .sidebar-profile-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .sidebar-profile-info strong,
-    .sidebar-profile-info span {
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .sidebar-profile-info strong {
-      font-size: 12px;
-    }
-
-    .sidebar-profile-info span {
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 10px;
+      padding: 13px 8px;
+      border-top: 1px solid var(--border);
+      cursor: pointer;
     }
 
     .avatar {
       width: 43px;
       height: 43px;
-      flex: 0 0 43px;
       display: grid;
       place-items: center;
-      overflow: hidden;
-      border: 1px solid rgba(39,229,138,.18);
+      flex-shrink: 0;
       border-radius: 50%;
-      background: linear-gradient(145deg, #1e4931, #10251a);
-      color: var(--green);
+      background: linear-gradient(145deg, #1d684a, #133d36);
+      color: #aaffd2;
       font-weight: 900;
+      overflow: hidden;
     }
 
     .avatar img {
@@ -762,19 +498,21 @@
       object-fit: cover;
     }
 
-    .avatar.avatar-small {
-      width: 35px;
-      height: 35px;
-      flex-basis: 35px;
+    .user-mini-info {
+      min-width: 0;
+    }
+
+    .user-mini-info strong {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       font-size: 12px;
     }
 
-    .avatar.avatar-large {
-      width: 90px;
-      height: 90px;
-      flex-basis: 90px;
-      border: 4px solid var(--panel);
-      font-size: 28px;
+    .user-mini-info span {
+      color: var(--muted);
+      font-size: 10px;
     }
 
     .main-column {
@@ -782,1425 +520,532 @@
     }
 
     .topbar {
+      min-height: 76px;
       position: sticky;
       top: 0;
-      z-index: 15;
-      min-height: 75px;
+      z-index: 20;
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 13px clamp(14px, 3vw, 35px);
+      justify-content: space-between;
+      gap: 15px;
+      padding: 13px 25px;
+      background: rgba(7,17,31,.91);
+      backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
-      background: rgba(7,17,14,.87);
-      backdrop-filter: blur(20px);
     }
 
-    .mobile-brand {
-      display: none;
+    .topbar-title h1 {
+      margin: 0;
+      font-size: 21px;
+      font-weight: 900;
     }
 
-    .topbar-search {
-      position: relative;
-      width: min(100%, 390px);
-    }
-
-    .topbar-search input {
-      width: 100%;
-      min-height: 42px;
-      padding: 10px 43px 10px 14px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: rgba(255,255,255,.025);
-      color: var(--text);
-      outline: none;
-    }
-
-    .topbar-search > i {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
+    .topbar-title p {
+      margin: 1px 0 0;
       color: var(--muted);
+      font-size: 11px;
     }
 
     .topbar-actions {
       display: flex;
       align-items: center;
-      gap: 9px;
-      margin-right: auto;
-    }
-
-    .topbar-user {
-      display: flex;
-      align-items: center;
       gap: 10px;
-      padding-right: 10px;
-      border-right: 1px solid var(--border);
     }
 
-    .topbar-user-info strong,
-    .topbar-user-info span {
-      display: block;
-      white-space: nowrap;
+    .icon-button {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 19px;
     }
 
-    .topbar-user-info strong {
-      font-size: 12px;
-    }
-
-    .topbar-user-info span {
-      margin-top: 2px;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .page-container {
-      width: min(100%, 1420px);
+    .content {
+      width: 100%;
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 30px clamp(14px, 3vw, 35px) 55px;
+      padding: 27px 25px 50px;
     }
 
-    .page-heading {
+    .page-section {
+      display: none;
+      animation: page-in .2s ease;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes page-in {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-heading {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 24px;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    .page-heading h1 {
+    .section-heading h2 {
       margin: 0;
-      font-size: clamp(22px, 2.6vw, 29px);
+      font-size: 20px;
       font-weight: 900;
     }
 
-    .page-heading p {
-      margin: 5px 0 0;
+    .section-heading p {
+      margin: 4px 0 0;
       color: var(--muted);
       font-size: 12px;
     }
 
-    .layout-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 280px;
-      gap: 22px;
-      align-items: start;
+    .welcome-banner {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      margin-bottom: 23px;
+      border: 1px solid rgba(32,212,123,.15);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at left center, rgba(32,212,123,.15), transparent 45%),
+        linear-gradient(120deg, #102b2b, #11243a);
     }
 
-    .content-column {
-      display: grid;
-      gap: 20px;
-      min-width: 0;
+    .welcome-banner::after {
+      content: "N";
+      position: absolute;
+      left: 23px;
+      top: -33px;
+      color: rgba(255,255,255,.035);
+      font-size: 180px;
+      line-height: 1;
+      font-weight: 900;
+      pointer-events: none;
     }
 
-    .right-column {
-      display: grid;
-      gap: 18px;
-      min-width: 0;
+    .welcome-banner h2 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 8px;
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 900;
     }
 
-    .card {
+    .welcome-banner p {
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+      margin: 0 0 18px;
+      color: #a8c1ce;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .welcome-banner button {
+      position: relative;
+      z-index: 1;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 13px;
+      margin-bottom: 25px;
+    }
+
+    .quick-card {
       min-width: 0;
+      padding: 17px;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(145deg, rgba(18,34,24,.97), rgba(12,25,17,.97));
-      box-shadow: 0 7px 24px rgba(0,0,0,.08);
+      border-radius: 17px;
+      background: var(--surface);
+      text-align: right;
+      color: var(--text);
     }
 
-    .card-pad {
-      padding: 20px;
-    }
-
-    .card-title-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .card-title-row h2,
-    .card-title-row h3 {
-      margin: 0;
-      font-size: 15px;
-      font-weight: 800;
-    }
-
-    .card-title-row p {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    /* القصص */
-
-    .stories-card {
-      padding: 18px;
-    }
-
-    .stories-list {
-      display: flex;
-      align-items: flex-start;
-      gap: 15px;
-      overflow-x: auto;
-      padding: 3px 0 7px;
-      scrollbar-width: thin;
-    }
-
-    .story-item {
-      flex: 0 0 68px;
+    .quick-card .quick-icon {
       display: grid;
-      justify-items: center;
-      gap: 8px;
-      padding: 0;
-      border: 0;
-      background: transparent;
-      color: #c7d9cd;
+      place-items: center;
+      width: 39px;
+      height: 39px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      background: rgba(32,212,123,.1);
+      color: var(--primary);
+      font-size: 20px;
+    }
+
+    .quick-card strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .quick-card small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
       font-size: 10px;
     }
 
-    .story-ring {
-      width: 62px;
-      height: 62px;
-      display: grid;
-      place-items: center;
-      padding: 3px;
-      border: 2px solid var(--green);
-      border-radius: 50%;
+    .panel {
+      margin-bottom: 18px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
     }
 
-    .story-ring .avatar {
-      width: 100%;
-      height: 100%;
-      flex-basis: auto;
-      border: 2px solid var(--panel);
+    .panel h3 {
+      margin: 0 0 15px;
+      font-size: 16px;
     }
-
-    .story-ring.story-add {
-      border-style: dashed;
-      color: var(--green);
-    }
-
-    .story-ring.story-add .avatar {
-      background: var(--green-soft);
-    }
-
-    .story-name {
-      max-width: 68px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    /* إنشاء منشور */
 
     .composer {
-      padding: 20px;
+      margin-bottom: 20px;
     }
 
     .composer-top {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 12px;
     }
 
-    .composer-trigger {
+    .composer-top textarea {
       flex: 1;
-      min-height: 47px;
-      padding: 12px 15px;
+      min-width: 0;
+      padding: 13px;
       border: 1px solid var(--border);
-      border-radius: 14px;
-      background: rgba(255,255,255,.025);
-      color: #8da396;
-      text-align: right;
-    }
-
-    .composer-trigger:hover {
-      border-color: rgba(39,229,138,.28);
+      border-radius: 13px;
+      background: #091524;
+      color: var(--text);
+      resize: vertical;
+      min-height: 50px;
     }
 
     .composer-actions {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 17px;
-      padding-top: 15px;
-      border-top: 1px solid var(--border);
-    }
-
-    .composer-tools {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .composer-tool {
-      display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 8px 10px;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      background: transparent;
+      gap: 10px;
+      margin-top: 13px;
+    }
+
+    .composer-actions input[type="file"] {
+      max-width: 65%;
       color: var(--muted);
       font-size: 11px;
     }
 
-    .composer-tool:hover {
-      background: var(--green-soft);
-      color: var(--green);
-    }
-
-    .composer-tool i {
-      color: var(--green);
-    }
-
-    /* المنشورات */
-
-    .feed-list {
+    .feed-list,
+    .messages-list,
+    .notifications-list,
+    .communities-list,
+    .discovery-list,
+    .my-communities-list,
+    .profile-posts {
       display: grid;
-      gap: 18px;
+      gap: 14px;
     }
 
-    .post-card {
-      overflow: hidden;
+    .post-card,
+    .message-card,
+    .notification-card,
+    .community-card {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: var(--surface);
     }
 
     .post-header {
       display: flex;
       align-items: center;
       gap: 11px;
-      padding: 18px 19px 12px;
+      margin-bottom: 14px;
     }
 
-    .post-author {
-      flex: 1;
+    .post-user {
       min-width: 0;
+      flex: 1;
     }
 
-    .post-author strong {
+    .post-user strong {
       display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-size: 12px;
+      font-size: 13px;
     }
 
-    .post-author span {
-      display: block;
-      margin-top: 3px;
+    .post-user small {
       color: var(--muted);
       font-size: 10px;
     }
 
-    .post-more {
-      border: 0;
-      background: transparent;
-      color: var(--muted);
-      padding: 8px;
-    }
-
     .post-body {
-      padding: 0 19px 14px;
-      color: #e1eee5;
+      color: #dce7f1;
       font-size: 13px;
       line-height: 2;
       overflow-wrap: anywhere;
       white-space: pre-wrap;
     }
 
-    .post-media {
-      width: 100%;
-      max-height: 600px;
-      display: block;
-      object-fit: contain;
-      background: #08110c;
-    }
-
-    video.post-media {
-      max-height: 480px;
-    }
-
-    .post-stats {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 13px 19px;
-      color: var(--muted);
-      font-size: 11px;
-    }
-
     .post-actions {
       display: flex;
-      align-items: center;
-      gap: 5px;
-      padding: 9px 12px;
-      margin: 0 12px;
+      flex-wrap: wrap;
+      gap: 9px;
+      padding-top: 14px;
+      margin-top: 14px;
       border-top: 1px solid var(--border);
     }
 
-    .post-action {
-      flex: 1;
-      min-height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: 0;
-      border-radius: 11px;
-      background: transparent;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    .post-action:hover {
-      background: rgba(255,255,255,.035);
-      color: var(--text);
-    }
-
-    .post-action.liked {
-      color: #ff7187;
-    }
-
-    .post-comments {
-      padding: 0 19px 17px;
-    }
-
-    .post-comment-form {
-      display: flex;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .post-comment-form input {
-      flex: 1;
-      min-width: 0;
-      min-height: 39px;
-      padding: 8px 12px;
+    .post-actions button {
+      padding: 7px 12px;
       border: 1px solid var(--border);
-      border-radius: 11px;
-      background: #09140e;
-      color: var(--text);
-      outline: none;
-    }
-
-    .post-comment-form button {
-      width: 40px;
-      border: 1px solid rgba(39,229,138,.15);
-      border-radius: 11px;
-      background: var(--green-soft);
-      color: var(--green);
-    }
-
-    .comment-item {
-      display: flex;
-      gap: 9px;
-      padding: 8px 0;
-    }
-
-    .comment-content {
-      flex: 1;
-      min-width: 0;
-      padding: 9px 12px;
-      border-radius: 12px;
-      background: rgba(255,255,255,.025);
-      overflow-wrap: anywhere;
-    }
-
-    .comment-content strong {
-      display: block;
-      font-size: 11px;
-    }
-
-    .comment-content p {
-      margin: 5px 0 0;
-      color: #c1d1c6;
-      line-height: 1.8;
-      font-size: 12px;
-      white-space: pre-wrap;
-    }
-
-    /* العمود الجانبي */
-
-    .suggestion-list,
-    .mini-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .suggestion-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .suggestion-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .suggestion-info strong,
-    .suggestion-info span {
-      display: block;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .suggestion-info strong {
-      font-size: 11px;
-    }
-
-    .suggestion-info span {
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .follow-btn {
-      min-height: 32px;
-      padding: 5px 10px;
-      border: 1px solid rgba(39,229,138,.19);
       border-radius: 10px;
-      background: var(--green-soft);
-      color: var(--green);
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    .follow-btn.following {
-      border-color: var(--border);
-      background: transparent;
-      color: var(--muted);
-    }
-
-    .trend-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      color: var(--muted);
-    }
-
-    .trend-item i {
-      margin-top: 4px;
-      color: var(--green);
-    }
-
-    .trend-item strong {
-      display: block;
-      color: #dce9e0;
+      background: var(--surface2);
+      color: #c2d0df;
       font-size: 11px;
     }
 
-    .trend-item span {
-      display: block;
-      margin-top: 4px;
-      font-size: 10px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      color: #688071;
-      font-size: 10px;
-    }
-
-    /* البحث */
-
-    .search-hero {
-      padding: clamp(22px, 4vw, 35px);
-      margin-bottom: 22px;
-      border: 1px solid rgba(39,229,138,.12);
-      border-radius: 22px;
-      background:
-        radial-gradient(ellipse at 90% 10%, rgba(39,229,138,.10), transparent 40%),
-        var(--panel);
-    }
-
-    .search-hero h2 {
-      margin: 0 0 7px;
-      font-size: 23px;
-      font-weight: 900;
-    }
-
-    .search-hero p {
-      margin: 0 0 20px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .search-form {
-      display: flex;
-      gap: 9px;
-    }
-
-    .search-form .input {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .people-search-results {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 15px;
-    }
-
-    .person-card {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      padding: 17px;
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      background: var(--panel);
-      min-width: 0;
-    }
-
-    .person-card-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .person-card-info strong,
-    .person-card-info span {
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .person-card-info strong {
-      font-size: 12px;
-    }
-
-    .person-card-info span {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    /* الرسائل */
-
-    .messages-layout {
-      display: grid;
-      grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
-      min-height: 600px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 21px;
-      background: var(--panel);
-    }
-
-    .conversation-panel {
-      min-width: 0;
-      border-left: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .conversation-panel-header {
-      padding: 17px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .conversation-panel-header h2 {
-      margin: 0 0 13px;
-      font-size: 16px;
-    }
-
-    .conversation-search {
-      width: 100%;
-      min-height: 40px;
-      padding: 9px 12px;
-      border: 1px solid var(--border);
-      border-radius: 11px;
-      background: #09140e;
-      color: var(--text);
-      outline: none;
-    }
-
-    .conversation-items {
-      display: grid;
-      align-content: start;
-      overflow-y: auto;
-    }
-
-    .conversation-item {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 14px;
-      border: 0;
-      border-bottom: 1px solid rgba(255,255,255,.035);
-      background: transparent;
-      text-align: right;
-    }
-
-    .conversation-item:hover,
-    .conversation-item.active {
-      background: var(--green-soft);
-    }
-
-    .conversation-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .conversation-info strong,
-    .conversation-info span {
-      display: block;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    .conversation-info strong {
-      font-size: 12px;
-    }
-
-    .conversation-info span {
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .chat-panel {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .chat-header {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      padding: 14px 18px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .chat-header-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .chat-header-info strong,
-    .chat-header-info span {
-      display: block;
-    }
-
-    .chat-header-info strong {
-      font-size: 13px;
-    }
-
-    .chat-header-info span {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .chat-messages {
-      flex: 1;
-      min-height: 350px;
-      max-height: 560px;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 13px;
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    .chat-empty {
-      flex: 1;
-      display: grid;
-      place-content: center;
-      justify-items: center;
+    .empty-state {
+      padding: 35px 18px;
       text-align: center;
       color: var(--muted);
-      padding: 25px;
+      border: 1px dashed rgba(255,255,255,.12);
+      border-radius: 17px;
+      font-size: 13px;
+      line-height: 2;
     }
 
-    .chat-empty i {
-      margin-bottom: 14px;
-      color: var(--green);
-      font-size: 35px;
-    }
-
-    .chat-empty strong {
-      color: var(--text);
-      font-size: 14px;
-    }
-
-    .chat-empty p {
-      max-width: 250px;
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .message-bubble {
-      max-width: min(78%, 450px);
-      padding: 11px 14px;
-      border: 1px solid var(--border);
-      border-radius: 15px 15px 4px 15px;
-      background: #192b20;
-      color: #e3f1e8;
-      line-height: 1.9;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      align-self: flex-start;
-    }
-
-    .message-bubble.mine {
-      align-self: flex-end;
-      border-color: rgba(39,229,138,.14);
-      border-radius: 15px 15px 15px 4px;
-      background: linear-gradient(135deg, #164b31, #103824);
-    }
-
-    .message-meta {
+    .empty-state strong {
       display: block;
-      margin-top: 5px;
-      color: #91b09b;
-      font-size: 9px;
-      text-align: left;
+      margin-bottom: 5px;
+      color: #d5e3ef;
+      font-size: 15px;
     }
 
-    .chat-compose {
+    .search-bar {
       display: flex;
-      align-items: center;
       gap: 9px;
-      padding: 15px;
-      border-top: 1px solid var(--border);
+      margin-bottom: 20px;
     }
 
-    .chat-compose .input {
+    .search-bar input {
       flex: 1;
       min-width: 0;
-    }
-
-    /* الإشعارات */
-
-    .notifications-list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .notification-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 13px;
-      padding: 17px;
+      padding: 13px;
       border: 1px solid var(--border);
-      border-radius: 15px;
-      background: var(--panel);
+      border-radius: 12px;
+      background: var(--surface);
+      color: var(--text);
     }
 
-    .notification-item.unread {
-      border-color: rgba(39,229,138,.15);
-      background: linear-gradient(100deg, rgba(39,229,138,.05), var(--panel));
+    .messages-toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
     }
-
-    .notification-icon {
-      width: 42px;
-      height: 42px;
-      flex: 0 0 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: var(--green-soft);
-      color: var(--green);
-    }
-
-    .notification-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .notification-content p {
-      margin: 0;
-      color: #d8e8dd;
-      font-size: 12px;
-      line-height: 1.9;
-      overflow-wrap: anywhere;
-    }
-
-    .notification-content span {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    /* الملف الشخصي */
 
     .profile-cover {
-      height: 220px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 22px 22px 0 0;
+      height: 190px;
+      border-radius: 20px 20px 0 0;
       background:
-        radial-gradient(ellipse at 25% 30%, rgba(39,229,138,.25), transparent 35%),
-        radial-gradient(ellipse at 80% 90%, rgba(39,229,138,.12), transparent 45%),
-        linear-gradient(130deg, #1b3d29, #0a1710);
-      background-size: cover;
+        radial-gradient(circle at 20% 30%, rgba(32,212,123,.35), transparent 35%),
+        linear-gradient(120deg, #153c39, #10213b 60%, #192e49);
       background-position: center;
+      background-size: cover;
     }
 
-    .profile-cover::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(0deg, rgba(5,14,9,.42), transparent 65%);
-      pointer-events: none;
-    }
-
-    .profile-cover-actions {
-      position: absolute;
-      z-index: 1;
-      top: 15px;
-      left: 15px;
-    }
-
-    .profile-main-card {
-      padding: 0 25px 24px;
+    .profile-header-card {
+      overflow: hidden;
+      margin-bottom: 20px;
       border: 1px solid var(--border);
-      border-top: 0;
-      border-radius: 0 0 22px 22px;
-      background: var(--panel);
+      border-radius: 21px;
+      background: var(--surface);
     }
 
-    .profile-top-row {
+    .profile-main {
       display: flex;
       align-items: flex-end;
-      justify-content: space-between;
+      flex-wrap: wrap;
       gap: 15px;
-      margin-top: -45px;
-      position: relative;
-      z-index: 2;
+      padding: 0 20px 20px;
     }
 
-    .profile-avatar-wrap {
-      padding: 5px;
-      border-radius: 50%;
-      background: var(--panel);
+    .profile-main .avatar {
+      width: 94px;
+      height: 94px;
+      margin-top: -43px;
+      border: 5px solid var(--surface);
+      font-size: 27px;
     }
 
-    .profile-identity {
-      padding-top: 13px;
+    .profile-info {
+      flex: 1;
+      min-width: 150px;
+      padding-top: 10px;
     }
 
-    .profile-identity h2 {
+    .profile-info h2 {
       margin: 0;
-      font-size: 23px;
-      font-weight: 900;
+      font-size: 20px;
     }
 
-    .profile-username {
-      display: block;
-      margin-top: 3px;
+    .profile-info p {
+      margin: 2px 0;
       color: var(--muted);
       font-size: 12px;
     }
 
     .profile-bio {
-      max-width: 720px;
-      margin: 15px 0;
-      color: #c7d9cd;
-      line-height: 2;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
+      margin-top: 8px !important;
+      color: #c8d5e3 !important;
+      line-height: 1.8;
     }
 
     .profile-stats {
       display: flex;
       flex-wrap: wrap;
-      gap: 25px;
-      padding-top: 17px;
-      border-top: 1px solid var(--border);
-    }
-
-    .profile-stat strong {
-      font-size: 15px;
-    }
-
-    .profile-stat span {
-      margin-right: 5px;
+      gap: 20px;
+      padding: 0 20px 20px;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 12px;
     }
 
-    .profile-tabs {
-      display: flex;
-      gap: 9px;
-      margin: 22px 0;
-      overflow-x: auto;
+    .profile-stats strong {
+      color: var(--text);
+      margin-left: 4px;
     }
 
-    .profile-tab {
-      padding: 10px 17px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--panel);
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .profile-tab.active {
-      border-color: rgba(39,229,138,.22);
-      background: var(--green-soft);
-      color: var(--green);
-    }
-
-    /* المجتمعات */
-
-    .communities-grid {
+    .settings-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 17px;
+      gap: 12px;
     }
 
-    .community-card {
-      overflow: hidden;
-    }
-
-    .community-cover {
-      height: 110px;
-      display: grid;
-      place-items: center;
-      background:
-        radial-gradient(ellipse at 25% 20%, rgba(39,229,138,.22), transparent 45%),
-        linear-gradient(135deg, #1c4930, #10251a);
-      color: var(--green);
-      font-size: 32px;
-    }
-
-    .community-content {
-      padding: 17px;
-    }
-
-    .community-content h3 {
-      margin: 0 0 7px;
-      font-size: 14px;
-    }
-
-    .community-content p {
-      min-height: 40px;
-      margin: 0 0 13px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.8;
-    }
-
-    .community-meta {
+    .setting-row {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 13px;
+      gap: 14px;
+      padding: 15px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: #0a1726;
+    }
+
+    .setting-row strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .setting-row small {
+      display: block;
+      margin-top: 3px;
       color: var(--muted);
       font-size: 10px;
     }
 
-    .community-content .btn {
-      width: 100%;
+    .setting-row input[type="checkbox"] {
+      width: 19px;
+      height: 19px;
+      accent-color: var(--primary);
     }
 
-    /* الإعدادات */
-
-    .settings-layout {
-      display: grid;
-      grid-template-columns: 230px minmax(0,1fr);
-      gap: 20px;
+    .setting-row select {
+      max-width: 150px;
+      padding: 8px;
+      color: var(--text);
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 9px;
     }
 
-    .settings-nav {
-      display: grid;
-      align-content: start;
-      gap: 5px;
-      padding: 12px;
+    .community-card h3 {
+      margin: 0 0 8px;
     }
 
-    .settings-nav button {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px;
-      border: 0;
-      border-radius: 11px;
-      background: transparent;
+    .community-card p {
       color: var(--muted);
-      text-align: right;
-    }
-
-    .settings-nav button.active {
-      background: var(--green-soft);
-      color: var(--green);
-    }
-
-    .settings-content {
-      padding: 23px;
-    }
-
-    .settings-content h2 {
-      margin: 0 0 7px;
-      font-size: 18px;
-    }
-
-    .settings-content > p {
-      margin: 0 0 22px;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.8;
-    }
-
-    .settings-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .settings-row:last-child {
-      border-bottom: 0;
-    }
-
-    .settings-row strong {
-      display: block;
-      font-size: 12px;
-    }
-
-    .settings-row span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.7;
-    }
-
-    /* الحالات الفارغة */
-
-    .empty-state {
-      display: grid;
-      justify-items: center;
-      text-align: center;
-      padding: 45px 20px;
-      border: 1px dashed rgba(190,233,203,.12);
-      border-radius: 18px;
-      color: var(--muted);
-    }
-
-    .empty-state > i {
-      margin-bottom: 15px;
-      color: #4c8062;
-      font-size: 34px;
-    }
-
-    .empty-state h3 {
-      margin: 0;
-      color: #dcebe1;
-      font-size: 14px;
-    }
-
-    .empty-state p {
-      max-width: 330px;
-      margin: 9px 0 0;
       font-size: 12px;
       line-height: 1.9;
     }
 
-    .loading-state {
-      padding: 35px 15px;
-      text-align: center;
-      color: var(--muted);
+    .community-card button {
+      margin-top: 8px;
     }
-
-    .loading-state i {
-      margin-left: 7px;
-      color: var(--green);
-    }
-
-    /* النافذة المنبثقة */
-
-    .modal-backdrop {
-      position: fixed;
-      z-index: 8000;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 17px;
-      background: rgba(0,0,0,.72);
-      backdrop-filter: blur(8px);
-    }
-
-    .modal {
-      width: min(100%, 560px);
-      max-height: min(88vh, 850px);
-      max-height: min(88dvh, 850px);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border: 1px solid rgba(190,255,213,.13);
-      border-radius: 23px;
-      background: #0d1a12;
-      box-shadow: var(--shadow);
-      animation: modal-in .2s ease;
-    }
-
-    @keyframes modal-in {
-      from { opacity: 0; transform: translateY(8px) scale(.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .modal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .modal-header h2 {
-      margin: 0;
-      font-size: 16px;
-    }
-
-    .modal-body {
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    .modal-footer {
-      display: flex;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      gap: 9px;
-      padding: 15px 20px;
-      border-top: 1px solid var(--border);
-    }
-
-    .modal-footer:empty {
-      display: none;
-    }
-
-    .file-preview {
-      display: grid;
-      grid-template-columns: repeat(3,minmax(0,1fr));
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .file-preview img,
-    .file-preview video {
-      width: 100%;
-      height: 105px;
-      object-fit: cover;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-    }
-
-    /* التنبيهات */
-
-    .toast-container {
-      position: fixed;
-      z-index: 12000;
-      top: 18px;
-      left: 18px;
-      display: grid;
-      gap: 10px;
-      width: min(370px, calc(100vw - 36px));
-      pointer-events: none;
-    }
-
-    .toast {
-      display: flex;
-      align-items: flex-start;
-      gap: 11px;
-      padding: 14px 15px;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: #12231a;
-      box-shadow: var(--shadow);
-      color: #e9f7ed;
-      font-size: 12px;
-      line-height: 1.8;
-      pointer-events: auto;
-      animation: toast-in .2s ease;
-    }
-
-    .toast > i {
-      margin-top: 3px;
-      color: var(--green);
-    }
-
-    .toast.error > i {
-      color: var(--danger);
-    }
-
-    .toast.warning > i {
-      color: var(--warning);
-    }
-
-    @keyframes toast-in {
-      from { opacity: 0; transform: translateY(-7px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* التنقل السفلي للموبايل */
 
     .mobile-bottom-nav {
       display: none;
     }
 
-    /* التجاوب */
+    #toast-container {
+      position: fixed;
+      bottom: 22px;
+      left: 18px;
+      z-index: 100001;
+      display: grid;
+      gap: 9px;
+      width: min(360px, calc(100% - 36px));
+      pointer-events: none;
+    }
 
-    @media (max-width: 1120px) {
-      :root {
-        --sidebar-width: 225px;
-      }
+    .toast {
+      padding: 13px 16px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: #13263a;
+      color: var(--text);
+      box-shadow: 0 12px 35px rgba(0,0,0,.3);
+      font-size: 12px;
+      animation: page-in .2s ease;
+    }
 
-      .layout-grid {
-        grid-template-columns: minmax(0,1fr) 240px;
-        gap: 15px;
-      }
+    .toast.error {
+      border-color: rgba(255,83,100,.3);
+    }
 
-      .communities-grid {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-      }
+    .toast.success {
+      border-color: rgba(32,212,123,.3);
+    }
 
-      .auth-visual {
-        padding: 35px;
-      }
+    .loading-inline {
+      padding: 25px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
     }
 
     @media (max-width: 900px) {
-      #auth-screen {
-        grid-template-columns: 1fr;
-        padding: 14px;
-      }
-
-      .auth-visual {
-        display: none;
-      }
-
-      .auth-form-panel {
-        min-height: calc(100dvh - 28px);
-        padding: 25px 10px;
-      }
-
-      .auth-mobile-brand {
-        display: flex;
-      }
-
-      .app-shell {
-        grid-template-columns: 76px minmax(0,1fr);
+      .app-layout {
+        grid-template-columns: 210px minmax(0, 1fr);
       }
 
       .sidebar {
-        align-items: center;
-        padding: 20px 10px;
+        padding-inline: 10px;
       }
 
-      .sidebar-brand {
-        padding: 0;
+      .content {
+        padding-inline: 18px;
       }
 
-      .sidebar-brand .brand-mark {
-        width: 47px;
-        height: 47px;
-        flex-basis: 47px;
-      }
-
-      .sidebar-brand .brand-copy,
-      .sidebar-label,
-      .nav-link span:not(.nav-count),
-      .sidebar-profile-info,
-      .sidebar-profile > button {
-        display: none;
-      }
-
-      .nav-link {
-        justify-content: center;
-        padding: 14px 8px;
-      }
-
-      .nav-link > i {
-        font-size: 19px;
-      }
-
-      .nav-count {
-        position: absolute;
-        margin: -24px -27px 0 0;
-      }
-
-      .sidebar-profile {
-        justify-content: center;
-        padding: 5px;
-        border: 0;
-        background: transparent;
-      }
-
-      .sidebar-profile .avatar {
-        width: 42px;
-        height: 42px;
-        flex-basis: 42px;
-      }
-
-      .layout-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-
-      .right-column {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-      }
-
-      .right-column > .card:last-child {
-        grid-column: 1 / -1;
-      }
-
-      .messages-layout {
-        grid-template-columns: minmax(220px, .75fr) minmax(0,1.25fr);
-      }
-
-      .settings-layout {
-        grid-template-columns: 190px minmax(0,1fr);
+      .quick-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 600px) {
-      body {
-        font-size: 13px;
+    @media (max-width: 680px) {
+      :root {
+        --nav-height: 67px;
       }
 
-      #auth-screen {
-        padding: 0 18px;
-      }
-
-      .auth-form-panel {
-        padding: 20px 0;
-      }
-
-      .auth-mobile-brand {
-        margin-bottom: 28px;
-      }
-
-      .auth-heading {
-        font-size: 26px;
-      }
-
-      .app-shell {
+      .app-layout {
         display: block;
-        padding-bottom: calc(69px + env(safe-area-inset-bottom));
       }
 
       .sidebar {
@@ -2208,1056 +1053,582 @@
       }
 
       .topbar {
-        min-height: 65px;
-        padding: 10px 13px;
-        gap: 9px;
+        min-height: 67px;
+        padding: 10px 14px;
       }
 
-      .mobile-brand {
-        display: flex;
-        gap: 8px;
+      .topbar-title h1 {
+        font-size: 18px;
       }
 
-      .mobile-brand .brand-mark {
-        width: 38px;
-        height: 38px;
-        flex-basis: 38px;
-        border-radius: 12px;
-        font-size: 21px;
-      }
-
-      .mobile-brand .brand-name {
-        font-size: 16px;
-      }
-
-      .mobile-brand .brand-caption {
-        font-size: 9px;
-      }
-
-      .topbar-search {
-        flex: 1;
-        width: auto;
-      }
-
-      .topbar-search input {
-        min-height: 39px;
-        padding-right: 35px;
-        font-size: 11px;
-      }
-
-      .topbar-search > i {
-        right: 11px;
+      .topbar-title p {
+        font-size: 10px;
       }
 
       .topbar-actions {
-        gap: 6px;
+        gap: 7px;
       }
 
-      .topbar-actions > .icon-btn {
-        width: 37px;
-        height: 37px;
-        flex-basis: 37px;
-        border-radius: 12px;
-      }
-
-      .topbar-user {
-        display: none;
-      }
-
-      .topbar-actions .desktop-create {
-        display: none;
-      }
-
-      .page-container {
-        padding: 22px 12px 25px;
-      }
-
-      .page-heading {
-        margin-bottom: 18px;
-      }
-
-      .page-heading h1 {
-        font-size: 23px;
-      }
-
-      .page-heading p {
-        font-size: 11px;
-      }
-
-      .card {
-        border-radius: 16px;
-      }
-
-      .stories-card,
-      .composer {
-        padding: 14px;
-      }
-
-      .stories-list {
-        gap: 12px;
-      }
-
-      .story-item {
-        flex-basis: 61px;
-      }
-
-      .story-ring {
-        width: 56px;
-        height: 56px;
-      }
-
-      .composer-top .avatar {
+      .icon-button {
         width: 38px;
         height: 38px;
-        flex-basis: 38px;
       }
 
-      .composer-trigger {
-        min-height: 42px;
-        padding: 10px;
+      .content {
+        padding: 18px 13px calc(var(--nav-height) + 25px);
+      }
+
+      .welcome-banner {
+        padding: 21px 18px;
+      }
+
+      .quick-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .quick-card {
+        padding: 12px 9px;
+      }
+
+      .quick-card .quick-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 17px;
+      }
+
+      .quick-card strong {
         font-size: 11px;
       }
 
-      .composer-tool {
-        padding: 7px;
-        font-size: 10px;
+      .quick-card small {
+        font-size: 9px;
       }
 
-      .post-header {
-        padding: 15px 14px 10px;
-      }
-
-      .post-body {
-        padding: 0 14px 12px;
-      }
-
-      .post-stats {
-        padding: 11px 14px;
-      }
-
-      .post-actions {
-        margin: 0 7px;
-        padding: 7px 0;
-      }
-
-      .post-action {
-        gap: 5px;
-        font-size: 10px;
-      }
-
-      .post-comments {
-        padding: 0 14px 14px;
-      }
-
-      .right-column {
-        grid-template-columns: minmax(0,1fr);
-      }
-
-      .right-column > .card:last-child {
-        grid-column: auto;
-      }
-
-      .people-search-results {
-        grid-template-columns: minmax(0,1fr);
-      }
-
-      .search-hero {
-        padding: 19px;
-      }
-
-      .search-hero h2 {
-        font-size: 20px;
-      }
-
-      .search-form {
-        flex-direction: column;
-      }
-
-      .search-form .btn {
-        width: 100%;
-      }
-
-      .messages-layout {
-        display: flex;
-        flex-direction: column;
-        min-height: 550px;
-      }
-
-      .conversation-panel {
-        border-left: 0;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .conversation-items {
-        display: flex;
-        max-height: 140px;
-        overflow-x: auto;
-        overflow-y: hidden;
-      }
-
-      .conversation-item {
-        flex: 0 0 210px;
-        border-left: 1px solid var(--border);
-        border-bottom: 0;
-      }
-
-      .conversation-panel-header {
-        padding: 13px;
-      }
-
-      .conversation-panel-header h2 {
-        font-size: 14px;
-      }
-
-      .chat-messages {
-        min-height: 300px;
-        max-height: none;
-        padding: 14px;
-      }
-
-      .chat-header {
-        min-height: 63px;
-        padding: 11px 13px;
-      }
-
-      .chat-compose {
-        padding: 11px;
-      }
-
-      .profile-cover {
-        height: 155px;
-      }
-
-      .profile-main-card {
-        padding: 0 15px 18px;
-      }
-
-      .profile-top-row {
-        margin-top: -35px;
-        align-items: flex-end;
-      }
-
-      .avatar.avatar-large {
-        width: 72px;
-        height: 72px;
-        flex-basis: 72px;
-      }
-
-      .profile-identity h2 {
-        font-size: 19px;
-      }
-
-      .profile-top-row > .btn {
-        min-height: 36px;
-        padding: 7px 10px;
-        font-size: 10px;
-      }
-
-      .profile-stats {
-        gap: 17px;
-      }
-
-      .profile-stat strong {
-        font-size: 13px;
-      }
-
-      .communities-grid {
-        grid-template-columns: minmax(0,1fr);
-      }
-
-      .settings-layout {
-        grid-template-columns: minmax(0,1fr);
-      }
-
-      .settings-nav {
-        display: flex;
-        overflow-x: auto;
-      }
-
-      .settings-nav button {
-        flex: 0 0 auto;
-        white-space: nowrap;
-      }
-
-      .settings-content {
-        padding: 17px;
+      .panel {
+        padding: 15px;
       }
 
       .mobile-bottom-nav {
         position: fixed;
-        z-index: 100;
-        right: 0;
         bottom: 0;
+        right: 0;
         left: 0;
+        z-index: 100;
+        height: calc(var(--nav-height) + env(safe-area-inset-bottom));
+        padding: 5px 4px env(safe-area-inset-bottom);
         display: flex;
         align-items: center;
         justify-content: space-around;
         gap: 2px;
-        padding: 8px 5px calc(8px + env(safe-area-inset-bottom));
         border-top: 1px solid var(--border);
-        background: rgba(7,17,14,.96);
-        backdrop-filter: blur(18px);
+        background: rgba(8,19,32,.97);
+        backdrop-filter: blur(20px);
       }
 
-      .mobile-nav-link {
-        position: relative;
+      .mobile-nav-btn {
+        min-width: 0;
         flex: 1;
-        display: grid;
-        justify-items: center;
-        gap: 4px;
-        padding: 5px 2px;
+        height: 53px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
         border: 0;
         border-radius: 11px;
+        color: #879bb0;
         background: transparent;
-        color: #81988a;
+      }
+
+      .mobile-nav-btn span {
+        font-size: 20px;
+        line-height: 1.2;
+      }
+
+      .mobile-nav-btn small {
         font-size: 9px;
       }
 
-      .mobile-nav-link i {
-        font-size: 18px;
+      .mobile-nav-btn.active {
+        color: var(--primary);
+        background: rgba(32,212,123,.08);
       }
 
-      .mobile-nav-link.active {
-        color: var(--green);
+      .profile-cover {
+        height: 145px;
       }
 
-      .mobile-nav-link .nav-count {
-        position: absolute;
-        top: 0;
-        right: calc(50% - 26px);
-        margin: 0;
-        font-size: 9px;
+      .profile-main {
+        padding-inline: 13px;
       }
 
-      .toast-container {
-        top: 10px;
-        left: 10px;
-        width: calc(100vw - 20px);
+      .profile-stats {
+        padding-inline: 15px;
+        gap: 13px;
       }
 
-      .modal-backdrop {
-        align-items: flex-end;
-        padding: 0;
+      .composer-top {
+        align-items: flex-start;
       }
 
-      .modal {
-        width: 100%;
-        max-height: 92dvh;
-        border-radius: 22px 22px 0 0;
+      .composer-top .avatar {
+        width: 37px;
+        height: 37px;
       }
 
-      .modal-body {
-        padding: 16px;
-      }
-
-      .modal-header {
-        padding: 15px 16px;
-      }
-
-      .modal-footer {
-        padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      .auth-card {
+        padding: 23px 19px;
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
+    @media (max-width: 380px) {
+      .quick-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .quick-card .quick-icon {
+        margin: 0;
+      }
+
+      .quick-card small {
+        margin-top: 2px;
+      }
+
+      .section-heading {
+        align-items: flex-start;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- شاشة البداية -->
-  <section id="boot-screen" aria-label="جاري فتح NOVA SOCIAL">
-    <div class="boot-inner">
-      <div class="boot-logo" aria-hidden="true">N.</div>
-      <h1 class="boot-title">NOVA <span>SOCIAL</span></h1>
-      <p class="boot-subtitle">مساحتك، مجتمعك، وعالمك الخاص.</p>
-      <div class="boot-track" aria-hidden="true"><span></span></div>
-      <div class="boot-status" id="boot-status" role="status">جاري تجهيز مساحتك...</div>
-      <button type="button" class="btn btn-primary boot-retry" id="boot-retry">
-        <i class="fa-solid fa-rotate-right"></i>
-        إعادة المحاولة
-      </button>
+
+  <!-- شاشة التحميل: تختفي بعد خمس ثوانٍ -->
+  <section id="loading-screen" class="screen" aria-label="تحميل NOVA SOCIAL">
+    <div class="splash-content">
+      <div class="brand-symbol"><span>N</span></div>
+      <h1 class="brand-name">NOVA <span>SOCIAL</span></h1>
+      <p class="brand-subtitle">مساحتك الخاصة للتواصل والاكتشاف</p>
+      <div class="loader-track">
+        <div class="loader-progress"></div>
+      </div>
+      <p class="loading-caption" id="loading-caption">جارٍ تجهيز تجربتك...</p>
     </div>
   </section>
 
   <!-- تسجيل الدخول -->
-  <section id="auth-screen" class="hidden">
-    <div class="auth-visual">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true">N.</div>
-        <div class="brand-copy">
-          <h1 class="brand-name">NOVA <span>SOCIAL</span></h1>
-          <span class="brand-caption">عالمك الاجتماعي في مكان واحد</span>
-        </div>
+  <section id="auth-screen" class="screen hidden">
+    <div class="auth-card">
+      <div class="auth-brand">
+        <div class="brand-symbol"><span>N</span></div>
+        <h1>NOVA SOCIAL</h1>
+        <p>كل ما يهمك في مساحة واحدة</p>
       </div>
 
-      <div class="auth-visual-content">
-        <span class="auth-badge">
-          <i class="fa-solid fa-circle-check"></i>
-          مساحتك الاجتماعية الجديدة
-        </span>
-
-        <h2 class="auth-hero-title">
-          تواصل بطريقتك،<br>
-          وكن جزءًا من <span>عالم أكبر.</span>
-        </h2>
-
-        <p class="auth-hero-description">
-          شارك أفكارك وصورك، اكتشف أشخاصًا جددًا، وانضم إلى المجتمعات التي تشبه اهتماماتك.
-        </p>
-
-        <div class="auth-feature-list">
-          <div class="auth-feature">
-            <i class="fa-solid fa-comments"></i>
-            <span>محادثات خاصة ومشاركة لحظاتك</span>
-          </div>
-          <div class="auth-feature">
-            <i class="fa-solid fa-users"></i>
-            <span>مجتمعات وأشخاص يشاركونك اهتماماتك</span>
-          </div>
-          <div class="auth-feature">
-            <i class="fa-solid fa-shield-halved"></i>
-            <span>حسابك وإعداداتك في مكان واحد</span>
-          </div>
-        </div>
+      <div class="auth-heading">
+        <h2 id="auth-title">أهلًا بعودتك</h2>
+        <p id="auth-subtitle">سجّل الدخول للمتابعة إلى حسابك.</p>
       </div>
 
-      <div class="auth-visual-footer">
-        <span>© <span data-current-year></span> NOVA SOCIAL</span>
-        <span>تواصل • شارك • اكتشف</span>
+      <div id="auth-message" role="alert"></div>
+
+      <form id="auth-form">
+        <div class="field hidden" id="auth-name-field">
+          <label for="auth-full-name">الاسم الكامل</label>
+          <input id="auth-full-name" type="text" autocomplete="name" placeholder="اكتب اسمك">
+        </div>
+
+        <div class="field">
+          <label for="auth-email">البريد الإلكتروني</label>
+          <input id="auth-email" type="email" autocomplete="email" placeholder="name@example.com" required>
+        </div>
+
+        <div class="field">
+          <label for="auth-password">كلمة المرور</label>
+          <input id="auth-password" type="password" autocomplete="current-password" minlength="6" placeholder="أدخل كلمة المرور" required>
+        </div>
+
+        <div class="field hidden" id="auth-username-field">
+          <label for="auth-username">اسم المستخدم</label>
+          <input id="auth-username" type="text" autocomplete="username" placeholder="اسم مستخدم مميز">
+        </div>
+
+        <button class="primary-btn auth-submit" id="auth-submit" type="submit">تسجيل الدخول</button>
+      </form>
+
+      <div class="auth-switch">
+        <span id="auth-switch-label">ليس لديك حساب؟</span>
+        <button type="button" class="text-btn" id="auth-switch-btn">إنشاء حساب</button>
       </div>
-    </div>
 
-    <div class="auth-form-panel">
-      <div class="auth-form-box">
-        <div class="auth-mobile-brand brand">
-          <div class="brand-mark" aria-hidden="true">N.</div>
-          <div class="brand-copy">
-            <h1 class="brand-name">NOVA <span>SOCIAL</span></h1>
-            <span class="brand-caption">عالمك الاجتماعي</span>
-          </div>
-        </div>
-
-        <div id="login-panel">
-          <h2 class="auth-heading">أهلًا بعودتك</h2>
-          <p class="auth-description">سجّل دخولك وارجع إلى عالمك في NOVA.</p>
-
-          <div class="auth-error" id="login-error" role="alert"></div>
-          <div class="auth-success" id="login-success" role="status"></div>
-
-          <form id="login-form">
-            <div class="field">
-              <label for="login-email">البريد الإلكتروني</label>
-              <div class="input-wrap">
-                <i class="fa-regular fa-envelope"></i>
-                <input class="input" id="login-email" name="email" type="email" placeholder="name@example.com" autocomplete="email" required>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="login-password">كلمة المرور</label>
-              <div class="input-wrap">
-                <i class="fa-solid fa-lock"></i>
-                <input class="input" id="login-password" name="password" type="password" placeholder="اكتب كلمة المرور" autocomplete="current-password" required minlength="6">
-              </div>
-            </div>
-
-            <div class="auth-links">
-              <span class="muted small">احرص على حماية كلمة مرورك.</span>
-              <button type="button" class="text-button small" id="forgot-password-btn">نسيت كلمة المرور؟</button>
-            </div>
-
-            <button class="btn btn-primary auth-submit" id="login-submit" type="submit">
-              <i class="fa-solid fa-arrow-right-to-bracket"></i>
-              تسجيل الدخول
-            </button>
-          </form>
-
-          <p class="auth-switch">
-            ليس لديك حساب؟
-            <button type="button" class="text-button" id="show-register-btn">أنشئ حسابًا جديدًا</button>
-          </p>
-        </div>
-
-        <div id="register-panel" class="hidden">
-          <h2 class="auth-heading">ابدأ رحلتك</h2>
-          <p class="auth-description">أنشئ حسابك وانضم إلى مجتمع NOVA.</p>
-
-          <div class="auth-error" id="register-error" role="alert"></div>
-          <div class="auth-success" id="register-success" role="status"></div>
-
-          <form id="register-form">
-            <div class="field">
-              <label for="register-name">الاسم الظاهر</label>
-              <div class="input-wrap">
-                <i class="fa-regular fa-user"></i>
-                <input class="input" id="register-name" name="full_name" type="text" placeholder="اكتب اسمك" autocomplete="name" required minlength="2" maxlength="60">
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="register-username">اسم المستخدم</label>
-              <div class="input-wrap">
-                <i class="fa-solid fa-at"></i>
-                <input class="input" id="register-username" name="username" type="text" placeholder="username" autocomplete="username" required minlength="3" maxlength="24" pattern="[A-Za-z0-9_.]+" title="استخدم الحروف الإنجليزية والأرقام والنقطة والشرطة السفلية فقط">
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="register-email">البريد الإلكتروني</label>
-              <div class="input-wrap">
-                <i class="fa-regular fa-envelope"></i>
-                <input class="input" id="register-email" name="email" type="email" placeholder="name@example.com" autocomplete="email" required>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="register-password">كلمة المرور</label>
-              <div class="input-wrap">
-                <i class="fa-solid fa-lock"></i>
-                <input class="input" id="register-password" name="password" type="password" placeholder="6 أحرف على الأقل" autocomplete="new-password" required minlength="6">
-              </div>
-            </div>
-
-            <button class="btn btn-primary auth-submit" id="register-submit" type="submit">
-              <i class="fa-solid fa-user-plus"></i>
-              إنشاء الحساب
-            </button>
-          </form>
-
-          <p class="auth-switch">
-            لديك حساب بالفعل؟
-            <button type="button" class="text-button" id="show-login-btn">تسجيل الدخول</button>
-          </p>
-        </div>
-
-        <div id="reset-panel" class="hidden">
-          <h2 class="auth-heading">استعادة كلمة المرور</h2>
-          <p class="auth-description">اكتب بريدك الإلكتروني لطلب رابط إعادة تعيين كلمة المرور.</p>
-
-          <div class="auth-error" id="reset-error" role="alert"></div>
-          <div class="auth-success" id="reset-success" role="status"></div>
-
-          <form id="reset-form">
-            <div class="field">
-              <label for="reset-email">البريد الإلكتروني</label>
-              <div class="input-wrap">
-                <i class="fa-regular fa-envelope"></i>
-                <input class="input" id="reset-email" name="email" type="email" placeholder="name@example.com" autocomplete="email" required>
-              </div>
-            </div>
-
-            <button class="btn btn-primary auth-submit" id="reset-submit" type="submit">
-              <i class="fa-solid fa-paper-plane"></i>
-              إرسال رابط الاستعادة
-            </button>
-          </form>
-
-          <p class="auth-switch">
-            <button type="button" class="text-button" id="back-to-login-btn">العودة إلى تسجيل الدخول</button>
-          </p>
-        </div>
+      <div style="text-align:center;margin-top:8px">
+        <button type="button" class="text-btn" id="auth-forgot-btn">نسيت كلمة المرور؟</button>
       </div>
     </div>
   </section>
 
   <!-- التطبيق -->
-  <section id="app-screen" class="hidden">
-    <div class="app-shell">
+  <section id="app-screen" class="screen">
+    <div class="app-layout">
 
       <aside class="sidebar">
-        <a class="brand sidebar-brand" href="#home" aria-label="NOVA SOCIAL">
-          <div class="brand-mark" aria-hidden="true">N.</div>
-          <div class="brand-copy">
-            <h1 class="brand-name">NOVA <span>SOCIAL</span></h1>
-            <span class="brand-caption">عالمك الاجتماعي</span>
+        <div class="sidebar-brand">
+          <div class="mini-brand-symbol">N</div>
+          <div>
+            <strong>NOVA SOCIAL</strong>
+            <small>تواصل بلا حدود</small>
           </div>
-        </a>
-
-        <div>
-          <div class="sidebar-label">القائمة الرئيسية</div>
-          <nav class="nav-list" aria-label="القائمة الرئيسية">
-            <button class="nav-link active" type="button" data-page="home">
-              <i class="fa-solid fa-house"></i><span>الرئيسية</span>
-            </button>
-            <button class="nav-link" type="button" data-page="search">
-              <i class="fa-solid fa-compass"></i><span>اكتشف</span>
-            </button>
-            <button class="nav-link" type="button" data-page="messages">
-              <i class="fa-regular fa-comment-dots"></i><span>الرسائل</span>
-            </button>
-            <button class="nav-link" type="button" data-page="notifications">
-              <i class="fa-regular fa-bell"></i><span>الإشعارات</span>
-              <span class="nav-count hidden" id="notification-badge">0</span>
-            </button>
-            <button class="nav-link" type="button" data-page="communities">
-              <i class="fa-solid fa-people-group"></i><span>المجتمعات</span>
-            </button>
-            <button class="nav-link" type="button" data-page="profile">
-              <i class="fa-regular fa-user"></i><span>ملفي الشخصي</span>
-            </button>
-          </nav>
         </div>
 
-        <div>
-          <div class="sidebar-label">حسابك</div>
-          <nav class="nav-list">
-            <button class="nav-link" type="button" data-page="settings">
-              <i class="fa-solid fa-gear"></i><span>الإعدادات</span>
-            </button>
-            <button class="nav-link" type="button" id="logout-btn">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i><span>تسجيل الخروج</span>
-            </button>
-          </nav>
-        </div>
+        <div class="nav-label">القائمة الرئيسية</div>
+
+        <nav class="nav-list" aria-label="التنقل الرئيسي">
+          <button class="nav-btn active" data-page="home">
+            <span class="nav-icon">⌂</span><span>الرئيسية</span>
+          </button>
+          <button class="nav-btn" data-page="search">
+            <span class="nav-icon">⌕</span><span>استكشاف</span>
+          </button>
+          <button class="nav-btn" data-page="messages">
+            <span class="nav-icon">▤</span><span>الرسائل</span>
+          </button>
+          <button class="nav-btn" data-page="notifications">
+            <span class="nav-icon">♧</span><span>الإشعارات</span>
+          </button>
+          <button class="nav-btn" data-page="communities">
+            <span class="nav-icon">◉</span><span>المجتمعات</span>
+          </button>
+          <button class="nav-btn" data-page="profile">
+            <span class="nav-icon">◎</span><span>الملف الشخصي</span>
+          </button>
+          <button class="nav-btn" data-page="settings">
+            <span class="nav-icon">⚙</span><span>الإعدادات</span>
+          </button>
+        </nav>
 
         <div class="sidebar-bottom">
-          <div class="sidebar-profile">
+          <div class="user-mini" data-page="profile" role="button" tabindex="0">
             <div class="avatar" id="sidebar-avatar">N</div>
-            <div class="sidebar-profile-info">
-              <strong id="sidebar-name">مستخدم NOVA</strong>
-              <span id="sidebar-username">@user</span>
+            <div class="user-mini-info">
+              <strong id="sidebar-user-name">حسابي</strong>
+              <span id="sidebar-user-handle">@user</span>
             </div>
           </div>
-          <div class="footer-links">
-            <span>© <span data-current-year></span> NOVA</span>
-            <span>مساحتك الاجتماعية</span>
-          </div>
+          <button class="nav-btn" id="sidebar-logout-btn">
+            <span class="nav-icon">↪</span><span>تسجيل الخروج</span>
+          </button>
         </div>
       </aside>
 
       <div class="main-column">
         <header class="topbar">
-          <a class="brand mobile-brand" href="#home" aria-label="NOVA SOCIAL">
-            <div class="brand-mark" aria-hidden="true">N.</div>
-            <div class="brand-copy">
-              <h1 class="brand-name">NOVA <span>SOCIAL</span></h1>
-              <span class="brand-caption">عالمك الاجتماعي</span>
-            </div>
-          </a>
-
-          <form class="topbar-search" id="global-search-form" role="search">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input id="global-search-input" type="search" placeholder="ابحث عن أشخاص ومجتمعات..." aria-label="بحث">
-          </form>
+          <div class="topbar-title">
+            <h1 id="page-title">الرئيسية</h1>
+            <p id="page-subtitle">أهلاً بك في نوفا</p>
+          </div>
 
           <div class="topbar-actions">
-            <button class="icon-btn desktop-create" id="open-create-post" type="button" aria-label="إنشاء منشور" title="إنشاء منشور">
-              <i class="fa-solid fa-plus"></i>
+            <button class="icon-button" id="top-search-btn" aria-label="البحث" title="البحث">⌕</button>
+            <button class="icon-button" id="top-notifications-btn" aria-label="الإشعارات" title="الإشعارات">♧</button>
+            <button class="icon-button" id="top-profile-btn" aria-label="الملف الشخصي" title="الملف الشخصي">
+              <span id="top-avatar-letter">N</span>
             </button>
-            <button class="icon-btn" type="button" data-page="notifications" aria-label="الإشعارات" title="الإشعارات">
-              <i class="fa-regular fa-bell"></i>
-            </button>
-            <div class="topbar-user">
-              <div class="topbar-user-info">
-                <strong id="topbar-name">مستخدم NOVA</strong>
-                <span id="topbar-username">@user</span>
-              </div>
-              <div class="avatar avatar-small" id="topbar-avatar">N</div>
-            </div>
           </div>
         </header>
 
-        <main class="page-container">
+        <main class="content">
 
-          <!-- الصفحة الرئيسية -->
-          <section id="page-home" data-page-section>
-            <div class="page-heading">
-              <div>
-                <h1>مساحتك الاجتماعية</h1>
-                <p>أهلًا بيك في NOVA، شارك لحظاتك واكتشف الجديد.</p>
-              </div>
-              <button class="btn btn-primary" type="button" id="home-create-post">
-                <i class="fa-solid fa-plus"></i>
-                منشور جديد
+          <!-- الرئيسية -->
+          <section class="page-section active" id="page-home" data-page-section="home">
+            <div class="welcome-banner">
+              <h2 id="welcome-title">أهلاً بك في NOVA SOCIAL</h2>
+              <p>شارك أفكارك، تواصل مع الآخرين، واكتشف مجتمعات تناسب اهتماماتك.</p>
+              <button class="primary-btn" id="welcome-explore-btn">ابدأ الاستكشاف</button>
+            </div>
+
+            <div class="quick-grid">
+              <button class="quick-card" data-page="messages">
+                <span class="quick-icon">▤</span>
+                <span><strong>الرسائل</strong><small>تواصل مع الآخرين</small></span>
+              </button>
+              <button class="quick-card" data-page="communities">
+                <span class="quick-icon">◉</span>
+                <span><strong>المجتمعات</strong><small>اكتشف اهتماماتك</small></span>
+              </button>
+              <button class="quick-card" data-page="profile">
+                <span class="quick-icon">◎</span>
+                <span><strong>ملفي الشخصي</strong><small>حدّث بياناتك</small></span>
               </button>
             </div>
 
-            <div class="layout-grid">
-              <div class="content-column">
-                <div class="card stories-card">
-                  <div class="card-title-row">
-                    <div>
-                      <h2>القصص</h2>
-                      <p>لحظات قصيرة من مجتمعك</p>
-                    </div>
-                    <button class="text-button small" id="composer-story" type="button">أضف قصتك +</button>
-                  </div>
-
-                  <div class="stories-list" id="stories-list">
-                    <button class="story-item" type="button" id="add-first-story">
-                      <span class="story-ring story-add">
-                        <span class="avatar"><i class="fa-solid fa-plus"></i></span>
-                      </span>
-                      <span class="story-name">قصتك</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="card composer">
-                  <div class="composer-top">
-                    <div class="avatar" id="composer-avatar">N</div>
-                    <button class="composer-trigger" id="composer-trigger" type="button">إيه الجديد اللي حابب تشاركه؟</button>
-                  </div>
-                  <div class="composer-actions">
-                    <div class="composer-tools">
-                      <button class="composer-tool" id="composer-photo" type="button">
-                        <i class="fa-regular fa-image"></i> صورة أو فيديو
-                      </button>
-                      <button class="composer-tool" id="composer-story-shortcut" type="button">
-                        <i class="fa-regular fa-circle-play"></i> قصة
-                      </button>
-                    </div>
-                    <button class="btn btn-primary" id="composer-publish" type="button">
-                      <i class="fa-solid fa-paper-plane"></i> ابدأ المشاركة
-                    </button>
-                  </div>
-                </div>
-
-                <div class="feed-list" id="feed-list">
-                  <div class="empty-state">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <h3>جاري تحميل المنشورات</h3>
-                    <p>هنعرض هنا المنشورات المتاحة لحسابك بمجرد تحميلها.</p>
-                  </div>
-                </div>
-              </div>
-
-              <aside class="right-column">
-                <div class="card card-pad">
-                  <div class="card-title-row">
-                    <div>
-                      <h3>أشخاص قد تعرفهم</h3>
-                      <p>اكتشف أشخاصًا جددًا</p>
-                    </div>
-                    <button class="icon-btn" type="button" data-page="search" aria-label="عرض المزيد">
-                      <i class="fa-solid fa-arrow-left"></i>
-                    </button>
-                  </div>
-                  <div class="suggestion-list" id="suggestions-list">
-                    <div class="empty-state">
-                      <i class="fa-solid fa-users"></i>
-                      <h3>اكتشف المجتمع</h3>
-                      <p>ابحث عن الأشخاص وانضم إلى مجتمعك.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card card-pad">
-                  <div class="card-title-row">
-                    <div>
-                      <h3>اكتشف NOVA</h3>
-                      <p>مساحتك مليانة احتمالات</p>
-                    </div>
-                  </div>
-                  <div class="mini-list">
-                    <div class="trend-item">
-                      <i class="fa-solid fa-user-group"></i>
-                      <div><strong>الأشخاص</strong><span>ابحث عن أصدقاء جدد.</span></div>
-                    </div>
-                    <div class="trend-item">
-                      <i class="fa-solid fa-comments"></i>
-                      <div><strong>المحادثات</strong><span>تواصل مع الأشخاص.</span></div>
-                    </div>
-                    <div class="trend-item">
-                      <i class="fa-solid fa-people-group"></i>
-                      <div><strong>المجتمعات</strong><span>شارك اهتماماتك.</span></div>
-                    </div>
-                  </div>
-                </div>
-              </aside>
-            </div>
-          </section>
-
-          <!-- البحث -->
-          <section id="page-search" class="hidden" data-page-section>
-            <div class="page-heading">
+            <div class="section-heading">
               <div>
-                <h1>اكتشف أشخاصًا جددًا</h1>
-                <p>ابحث عن الأشخاص باستخدام الاسم أو اسم المستخدم.</p>
+                <h2>آخر المنشورات</h2>
+                <p>ما الجديد في مجتمع نوفا؟</p>
               </div>
+              <button class="secondary-btn" id="refresh-feed-btn">تحديث</button>
             </div>
 
-            <div class="search-hero">
-              <h2>مين حابب تلاقي؟</h2>
-              <p>اكتب الاسم أو اسم المستخدم للعثور على حسابات متاحة للبحث.</p>
-              <form id="people-search-form" class="search-form">
-                <input class="input" id="people-search-input" type="search" placeholder="الاسم أو @username" autocomplete="off">
-                <button class="btn btn-primary" type="submit">
-                  <i class="fa-solid fa-magnifying-glass"></i> بحث
-                </button>
+            <div class="panel composer">
+              <h3>شارك ما يدور في بالك</h3>
+              <form id="create-post-form">
+                <div class="composer-top">
+                  <div class="avatar" id="composer-avatar">N</div>
+                  <textarea id="post-body-input" placeholder="اكتب منشورًا جديدًا..." maxlength="5000" required></textarea>
+                </div>
+                <div class="composer-actions">
+                  <input id="post-media-input" type="file" accept="image/*,video/*" aria-label="إضافة صورة أو فيديو">
+                  <button class="primary-btn" type="submit" id="publish-post-btn">نشر المنشور</button>
+                </div>
               </form>
             </div>
 
-            <div class="people-search-results" id="people-search-results">
-              <div class="empty-state" style="grid-column:1/-1">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <h3>ابدأ البحث</h3>
-                <p>اكتب اسمًا أو اسم مستخدم للبحث عن حسابات حقيقية في قاعدة البيانات.</p>
+            <div id="feed-list" class="feed-list">
+              <div class="loading-inline">جارٍ تحميل المنشورات...</div>
+            </div>
+          </section>
+
+          <!-- الاستكشاف -->
+          <section class="page-section" id="page-search" data-page-section="search">
+            <div class="section-heading">
+              <div>
+                <h2>استكشف نوفا</h2>
+                <p>ابحث عن الأشخاص والمحتوى والمجتمعات.</p>
+              </div>
+            </div>
+
+            <form id="people-search-form" class="search-bar">
+              <input id="people-search-input" type="search" placeholder="ابحث باسم المستخدم أو الاسم..." autocomplete="off">
+              <button class="primary-btn" type="submit">بحث</button>
+            </form>
+
+            <div class="panel">
+              <h3>نتائج البحث</h3>
+              <div id="search-results" class="discovery-list">
+                <div class="empty-state">اكتب اسمًا أو اسم مستخدم لبدء البحث.</div>
               </div>
             </div>
           </section>
 
           <!-- الرسائل -->
-          <section id="page-messages" class="hidden" data-page-section>
-            <div class="page-heading">
+          <section class="page-section" id="page-messages" data-page-section="messages">
+            <div class="section-heading">
               <div>
-                <h1>الرسائل</h1>
-                <p>محادثاتك الخاصة في مكان واحد.</p>
+                <h2>الرسائل</h2>
+                <p>محادثاتك في مكان واحد.</p>
               </div>
-              <button class="btn" type="button" id="refresh-conversations">
-                <i class="fa-solid fa-rotate"></i> تحديث
-              </button>
+              <button class="secondary-btn" id="refresh-messages-btn">تحديث</button>
             </div>
 
-            <div class="messages-layout">
-              <aside class="conversation-panel">
-                <div class="conversation-panel-header">
-                  <h2>المحادثات</h2>
-                  <input class="conversation-search" id="conversation-search" type="search" placeholder="ابحث في المحادثات...">
-                </div>
-                <div class="conversation-items" id="conversation-items">
-                  <div class="empty-state">
-                    <i class="fa-regular fa-comments"></i>
-                    <h3>لا توجد محادثات ظاهرة</h3>
-                    <p>ابدأ بالتواصل مع شخص من صفحة البحث.</p>
-                  </div>
-                </div>
-              </aside>
+            <div class="messages-toolbar">
+              <input id="message-search-input" type="search" placeholder="ابحث في المحادثات..." style="flex:1;min-width:140px;padding:11px;border-radius:11px;border:1px solid var(--border);background:var(--surface);color:var(--text)">
+            </div>
 
-              <section class="chat-panel">
-                <header class="chat-header">
-                  <div class="avatar" id="chat-avatar"><i class="fa-regular fa-comment-dots"></i></div>
-                  <div class="chat-header-info">
-                    <strong id="chat-title">اختر محادثة</strong>
-                    <span id="chat-subtitle">ستظهر تفاصيل المحادثة هنا</span>
-                  </div>
-                  <button class="icon-btn" id="refresh-chat" type="button" aria-label="تحديث الرسائل">
-                    <i class="fa-solid fa-rotate"></i>
-                  </button>
-                </header>
-
-                <div class="chat-messages" id="chat-messages">
-                  <div class="chat-empty">
-                    <i class="fa-regular fa-comments"></i>
-                    <strong>مساحة محادثتك</strong>
-                    <p>اختر محادثة من القائمة لعرض الرسائل وإرسال رسالة جديدة.</p>
-                  </div>
-                </div>
-
-                <form class="chat-compose" id="chat-compose-form">
-                  <button class="icon-btn" id="chat-attach-btn" type="button" aria-label="إرفاق ملف">
-                    <i class="fa-solid fa-paperclip"></i>
-                  </button>
-                  <input class="input" id="chat-message-input" type="text" placeholder="اكتب رسالتك..." autocomplete="off" maxlength="5000" disabled>
-                  <button class="btn btn-primary" id="chat-send-btn" type="submit" aria-label="إرسال الرسالة" disabled>
-                    <i class="fa-solid fa-paper-plane"></i>
-                  </button>
-                </form>
-              </section>
+            <div id="messages-list" class="messages-list">
+              <div class="loading-inline">جارٍ تحميل المحادثات...</div>
             </div>
           </section>
 
           <!-- الإشعارات -->
-          <section id="page-notifications" class="hidden" data-page-section>
-            <div class="page-heading">
+          <section class="page-section" id="page-notifications" data-page-section="notifications">
+            <div class="section-heading">
               <div>
-                <h1>الإشعارات</h1>
-                <p>تابع آخر التفاعلات والتنبيهات الخاصة بحسابك.</p>
+                <h2>الإشعارات</h2>
+                <p>تابع آخر المستجدات الخاصة بحسابك.</p>
               </div>
-              <button class="btn" id="refresh-notifications" type="button">
-                <i class="fa-solid fa-rotate"></i> تحديث
-              </button>
+              <button class="secondary-btn" id="refresh-notifications-btn">تحديث</button>
             </div>
 
-            <div class="notifications-list" id="notifications-list">
-              <div class="empty-state">
-                <i class="fa-regular fa-bell"></i>
-                <h3>إشعاراتك هنا</h3>
-                <p>عند وجود إشعارات متاحة لحسابك، ستظهر في هذه الصفحة.</p>
-              </div>
-            </div>
-          </section>
-
-          <!-- الملف الشخصي -->
-          <section id="page-profile" class="hidden" data-page-section>
-            <div class="page-heading">
-              <div>
-                <h1>ملفي الشخصي</h1>
-                <p>هويتك ومشاركاتك داخل NOVA SOCIAL.</p>
-              </div>
-              <button class="btn" id="profile-share-btn" type="button">
-                <i class="fa-solid fa-share-nodes"></i> مشاركة الملف
-              </button>
-            </div>
-
-            <div class="profile-cover" id="profile-cover">
-              <div class="profile-cover-actions">
-                <button class="icon-btn" id="change-cover-btn" type="button" aria-label="تغيير صورة الغلاف" title="تغيير صورة الغلاف">
-                  <i class="fa-solid fa-camera"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="profile-main-card">
-              <div class="profile-top-row">
-                <div class="profile-avatar-wrap">
-                  <div class="avatar avatar-large" id="profile-avatar">N</div>
-                </div>
-                <button class="btn" id="edit-profile-btn" type="button">
-                  <i class="fa-solid fa-pen"></i> تعديل الملف
-                </button>
-              </div>
-
-              <div class="profile-identity">
-                <h2 id="profile-name">مستخدم NOVA</h2>
-                <span class="profile-username" id="profile-username">@user</span>
-              </div>
-
-              <p class="profile-bio" id="profile-bio">أهلًا بك في مساحتك الاجتماعية.</p>
-
-              <div class="profile-stats">
-                <div class="profile-stat">
-                  <strong id="profile-post-count">—</strong><span>منشور</span>
-                </div>
-                <div class="profile-stat">
-                  <strong id="profile-followers-count">—</strong><span>متابع</span>
-                </div>
-                <div class="profile-stat">
-                  <strong id="profile-following-count">—</strong><span>يتابع</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="profile-tabs">
-              <button class="profile-tab active" type="button" data-profile-tab="posts">المنشورات</button>
-              <button class="profile-tab" type="button" data-profile-tab="media">الوسائط</button>
-            </div>
-
-            <div class="feed-list" id="profile-posts">
-              <div class="empty-state">
-                <i class="fa-regular fa-images"></i>
-                <h3>منشوراتك ستظهر هنا</h3>
-                <p>عندما تنشر محتوى، ستجده في هذه المساحة.</p>
-              </div>
+            <div id="notifications-list" class="notifications-list">
+              <div class="loading-inline">جارٍ تحميل الإشعارات...</div>
             </div>
           </section>
 
           <!-- المجتمعات -->
-          <section id="page-communities" class="hidden" data-page-section>
-            <div class="page-heading">
+          <section class="page-section" id="page-communities" data-page-section="communities">
+            <div class="section-heading">
               <div>
-                <h1>المجتمعات</h1>
-                <p>أماكن تجمع الأشخاص حول الاهتمامات المشتركة.</p>
+                <h2>المجتمعات</h2>
+                <p>أماكن تجمع الأشخاص أصحاب الاهتمامات المشتركة.</p>
               </div>
-              <button class="btn btn-primary" id="create-community-btn" type="button">
-                <i class="fa-solid fa-plus"></i> مجتمع جديد
-              </button>
+              <button class="primary-btn" id="create-community-btn">إنشاء مجتمع</button>
             </div>
 
-            <div class="communities-grid" id="communities-list">
-              <div class="empty-state" style="grid-column:1/-1">
-                <i class="fa-solid fa-people-group"></i>
-                <h3>اكتشف المجتمعات</h3>
-                <p>ستظهر هنا المجتمعات المتاحة حسب البيانات والصلاحيات الموجودة في قاعدة البيانات.</p>
+            <form id="community-search-form" class="search-bar">
+              <input id="community-search-input" type="search" placeholder="ابحث عن مجتمع...">
+              <button class="secondary-btn" type="submit">بحث</button>
+            </form>
+
+            <div class="panel">
+              <h3>مجتمعاتي</h3>
+              <div id="my-communities-list" class="my-communities-list">
+                <div class="loading-inline">جارٍ تحميل مجتمعاتك...</div>
+              </div>
+            </div>
+
+            <div class="section-heading">
+              <div>
+                <h2>اكتشف مجتمعات جديدة</h2>
+              </div>
+              <button class="secondary-btn" id="refresh-communities-btn">تحديث</button>
+            </div>
+
+            <div id="community-discovery-list" class="communities-list">
+              <div class="loading-inline">جارٍ تحميل المجتمعات...</div>
+            </div>
+
+            <div id="community-details" class="panel hidden"></div>
+          </section>
+
+          <!-- الملف الشخصي -->
+          <section class="page-section" id="page-profile" data-page-section="profile">
+            <div class="section-heading">
+              <div>
+                <h2>ملفي الشخصي</h2>
+                <p>هويتك ومساحتك الخاصة على نوفا.</p>
+              </div>
+              <button class="secondary-btn" id="edit-profile-btn">تعديل الملف</button>
+            </div>
+
+            <div class="profile-header-card">
+              <div class="profile-cover" id="profile-cover"></div>
+              <div class="profile-main">
+                <div class="avatar" id="profile-avatar">N</div>
+                <div class="profile-info">
+                  <h2 id="profile-name">جارٍ التحميل...</h2>
+                  <p id="profile-username">@user</p>
+                  <p id="profile-bio" class="profile-bio">أضف نبذة تعريفية عن نفسك.</p>
+                </div>
+                <div style="display:flex;gap:7px;flex-wrap:wrap">
+                  <button class="secondary-btn" id="profile-share-btn">مشاركة الملف</button>
+                  <button class="secondary-btn" id="settings-edit-profile">تعديل</button>
+                </div>
+              </div>
+
+              <div class="profile-stats">
+                <span><strong id="profile-post-count">0</strong> منشور</span>
+                <span><strong id="profile-followers-count">0</strong> متابع</span>
+                <span><strong id="profile-following-count">0</strong> يتابع</span>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px">
+              <label class="secondary-btn" for="avatar-file-input">تغيير الصورة الشخصية</label>
+              <input class="hidden" id="avatar-file-input" type="file" accept="image/jpeg,image/png,image/webp">
+              <label class="secondary-btn" for="cover-file-input">تغيير صورة الغلاف</label>
+              <input class="hidden" id="cover-file-input" type="file" accept="image/jpeg,image/png,image/webp">
+            </div>
+
+            <div class="panel">
+              <h3>منشوراتي</h3>
+              <div id="profile-posts" class="profile-posts">
+                <div class="loading-inline">جارٍ تحميل منشوراتك...</div>
               </div>
             </div>
           </section>
 
           <!-- الإعدادات -->
-          <section id="page-settings" class="hidden" data-page-section>
-            <div class="page-heading">
+          <section class="page-section" id="page-settings" data-page-section="settings">
+            <div class="section-heading">
               <div>
-                <h1>الإعدادات</h1>
-                <p>تحكم في حسابك وتجربتك داخل NOVA.</p>
+                <h2>الإعدادات</h2>
+                <p>تحكم في تفضيلات حسابك وخصوصيتك.</p>
               </div>
             </div>
 
-            <div class="settings-layout">
-              <nav class="card settings-nav" aria-label="قائمة الإعدادات">
-                <button type="button" class="active" data-settings-tab="account">
-                  <i class="fa-regular fa-user"></i> الحساب
-                </button>
-                <button type="button" data-settings-tab="security">
-                  <i class="fa-solid fa-shield-halved"></i> الأمان
-                </button>
-                <button type="button" data-settings-tab="appearance">
-                  <i class="fa-solid fa-palette"></i> المظهر
-                </button>
-              </nav>
-
-              <div class="card settings-content">
-                <div data-settings-panel="account">
-                  <h2>إعدادات الحساب</h2>
-                  <p>إدارة بياناتك الأساسية وملفك الشخصي.</p>
-
-                  <div class="settings-row">
-                    <div>
-                      <strong>الملف الشخصي</strong>
-                      <span>تغيير الاسم والصورة والنبذة.</span>
-                    </div>
-                    <button class="btn" id="settings-edit-profile" type="button">تعديل</button>
-                  </div>
-
-                  <div class="settings-row">
-                    <div>
-                      <strong>البريد الإلكتروني</strong>
-                      <span id="settings-email">سيظهر البريد المرتبط بحسابك.</span>
-                    </div>
-                    <i class="fa-regular fa-envelope muted"></i>
-                  </div>
+            <div class="panel">
+              <h3>المظهر واللغة</h3>
+              <div class="settings-grid">
+                <div class="setting-row">
+                  <div><strong>المظهر</strong><small>اختيار مظهر التطبيق</small></div>
+                  <select id="setting-theme">
+                    <option value="dark">داكن</option>
+                    <option value="light">فاتح</option>
+                    <option value="system">حسب الجهاز</option>
+                  </select>
                 </div>
-
-                <div class="hidden" data-settings-panel="security">
-                  <h2>الأمان</h2>
-                  <p>حافظ على بيانات تسجيل الدخول الخاصة بك.</p>
-
-                  <div class="settings-row">
-                    <div>
-                      <strong>استعادة كلمة المرور</strong>
-                      <span>طلب رابط إعادة تعيين كلمة المرور عبر البريد الإلكتروني.</span>
-                    </div>
-                    <button class="btn" id="settings-reset-password" type="button">استعادة</button>
-                  </div>
-
-                  <div class="settings-row">
-                    <div>
-                      <strong>تسجيل الخروج</strong>
-                      <span>إنهاء جلسة الدخول الحالية على هذا الجهاز.</span>
-                    </div>
-                    <button class="btn btn-danger" id="settings-logout" type="button">خروج</button>
-                  </div>
-                </div>
-
-                <div class="hidden" data-settings-panel="appearance">
-                  <h2>المظهر</h2>
-                  <p>واجهة NOVA الحالية تستخدم المظهر الداكن.</p>
-
-                  <div class="settings-row">
-                    <div>
-                      <strong>المظهر الداكن</strong>
-                      <span>ألوان داكنة مريحة مع تفاصيل خضراء.</span>
-                    </div>
-                    <span style="color:var(--green)">مفعّل</span>
-                  </div>
-
-                  <div class="settings-row">
-                    <div>
-                      <strong>نسخة التطبيق</strong>
-                      <span>NOVA SOCIAL Web</span>
-                    </div>
-                    <span>1.0.0</span>
-                  </div>
+                <div class="setting-row">
+                  <div><strong>لغة التطبيق</strong><small>لغة الواجهة</small></div>
+                  <select id="setting-language">
+                    <option value="ar">العربية</option>
+                    <option value="en">English</option>
+                  </select>
                 </div>
               </div>
+            </div>
+
+            <div class="panel">
+              <h3>الإشعارات</h3>
+              <div class="settings-grid">
+                <label class="setting-row">
+                  <span><strong>تفعيل الإشعارات</strong><small>السماح بإشعارات التطبيق</small></span>
+                  <input id="setting-notifications" type="checkbox" checked>
+                </label>
+                <label class="setting-row">
+                  <span><strong>إشعارات الرسائل</strong><small>التنبيه عند وصول رسالة</small></span>
+                  <input id="setting-message-notifications" type="checkbox" checked>
+                </label>
+                <label class="setting-row">
+                  <span><strong>إشعارات المتابعة</strong><small>التنبيه عند متابعتك</small></span>
+                  <input id="setting-follow-notifications" type="checkbox" checked>
+                </label>
+                <label class="setting-row">
+                  <span><strong>إشعارات البريد الإلكتروني</strong><small>التنبيهات عبر البريد</small></span>
+                  <input id="setting-email-notifications" type="checkbox">
+                </label>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>الخصوصية</h3>
+              <div class="settings-grid">
+                <div class="setting-row">
+                  <div><strong>ظهور الملف الشخصي</strong><small>تحديد من يمكنه رؤية ملفك</small></div>
+                  <select id="setting-profile-visibility">
+                    <option value="public">عام</option>
+                    <option value="private">خاص</option>
+                  </select>
+                </div>
+                <label class="setting-row">
+                  <span><strong>إظهار حالة الاتصال</strong><small>السماح للآخرين بمعرفة أنك متصل</small></span>
+                  <input id="setting-online-status" type="checkbox" checked>
+                </label>
+                <label class="setting-row">
+                  <span><strong>السماح بطلبات الرسائل</strong><small>السماح للمستخدمين بمراسلتك</small></span>
+                  <input id="setting-message-requests" type="checkbox" checked>
+                </label>
+              </div>
+              <button class="primary-btn" id="save-settings-btn" style="margin-top:16px">حفظ الإعدادات</button>
+            </div>
+
+            <div class="panel">
+              <h3>أمان الحساب</h3>
+              <div class="field">
+                <label for="setting-new-password">كلمة المرور الجديدة</label>
+                <input id="setting-new-password" type="password" minlength="6" placeholder="6 أحرف على الأقل">
+              </div>
+              <div class="field">
+                <label for="setting-confirm-password">تأكيد كلمة المرور</label>
+                <input id="setting-confirm-password" type="password" minlength="6" placeholder="أعد كتابة كلمة المرور">
+              </div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button class="secondary-btn" id="change-password-btn">تغيير كلمة المرور</button>
+                <button class="secondary-btn" id="reset-password-btn">إرسال رابط استعادة</button>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>إدارة الحساب</h3>
+              <p style="color:var(--muted);font-size:12px;line-height:1.9">عند تسجيل الخروج ستحتاج إلى تسجيل الدخول مرة أخرى للوصول إلى حسابك.</p>
+              <button class="secondary-btn" id="settings-reset-btn">تحديث الإعدادات</button>
+              <button class="secondary-btn" id="settings-logout-btn" style="color:#ff8d99">تسجيل الخروج</button>
             </div>
           </section>
 
@@ -3265,350 +1636,676 @@
       </div>
     </div>
 
-    <!-- تنقل الموبايل -->
-    <nav class="mobile-bottom-nav" aria-label="التنقل السريع">
-      <button class="mobile-nav-link active" type="button" data-page="home">
-        <i class="fa-solid fa-house"></i><span>الرئيسية</span>
-      </button>
-      <button class="mobile-nav-link" type="button" data-page="search">
-        <i class="fa-solid fa-compass"></i><span>اكتشف</span>
-      </button>
-      <button class="mobile-nav-link" type="button" data-page="messages">
-        <i class="fa-regular fa-comment-dots"></i><span>الرسائل</span>
-      </button>
-      <button class="mobile-nav-link" type="button" data-page="notifications">
-        <i class="fa-regular fa-bell"></i><span>الإشعارات</span>
-        <span class="nav-count hidden" id="mobile-notification-badge">0</span>
-      </button>
-      <button class="mobile-nav-link" type="button" data-page="profile">
-        <i class="fa-regular fa-user"></i><span>حسابي</span>
-      </button>
+    <!-- تنقل الهاتف -->
+    <nav class="mobile-bottom-nav" aria-label="التنقل على الهاتف">
+      <button class="mobile-nav-btn active" data-page="home"><span>⌂</span><small>الرئيسية</small></button>
+      <button class="mobile-nav-btn" data-page="search"><span>⌕</span><small>استكشاف</small></button>
+      <button class="mobile-nav-btn" data-page="messages"><span>▤</span><small>الرسائل</small></button>
+      <button class="mobile-nav-btn" data-page="notifications"><span>♧</span><small>الإشعارات</small></button>
+      <button class="mobile-nav-btn" data-page="profile"><span>◎</span><small>حسابي</small></button>
     </nav>
   </section>
 
-  <!-- مدخلات الملفات -->
-  <input class="hidden" id="post-media-input" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm" multiple>
-  <input class="hidden" id="story-media-input" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm">
-  <input class="hidden" id="avatar-file-input" type="file" accept="image/jpeg,image/png,image/webp">
-  <input class="hidden" id="cover-file-input" type="file" accept="image/jpeg,image/png,image/webp">
-  <input class="hidden" id="message-file-input" type="file" accept="image/jpeg,image/png,image/webp,video/mp4,video/webm,audio/mpeg,audio/mp4,application/pdf">
+  <div id="toast-container" aria-live="polite"></div>
 
-  <!-- النافذة المشتركة -->
-  <div class="modal-backdrop hidden" id="modal-backdrop" role="presentation">
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <header class="modal-header">
-        <h2 id="modal-title">NOVA SOCIAL</h2>
-        <button class="icon-btn" id="modal-close" type="button" aria-label="إغلاق النافذة">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </header>
-      <div class="modal-body" id="modal-body"></div>
-      <footer class="modal-footer" id="modal-footer"></footer>
-    </section>
-  </div>
-
-  <!-- رسائل النظام -->
-  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="false"></div>
-
+  <!--
+    مهم:
+    يجب أن يكون supabase.js وauth.js وباقي الملفات في نفس المجلد.
+    يعمل هذا المشروع كـ ES Modules، لذلك افتحه عبر GitHub Pages أو خادم محلي.
+  -->
   <script>
-    /*
-      تهيئة واجهة البداية:
-      لا نعتمد على مؤقت وحده لإخفاء الشاشة.
-      app.js هو المسؤول عن بدء التطبيق وإظهار الشاشة المناسبة.
-      توجد مهلة أمان حتى لا يظل المستخدم عالقًا على شاشة التحميل للأبد.
-    */
     (() => {
       "use strict";
 
-      document.querySelectorAll("[data-current-year]").forEach((element) => {
-        element.textContent = String(new Date().getFullYear());
-      });
+      const splash = document.getElementById("loading-screen");
+      const authScreen = document.getElementById("auth-screen");
+      const appScreen = document.getElementById("app-screen");
+      const caption = document.getElementById("loading-caption");
 
+      let splashFinished = false;
       let appReady = false;
-      let bootTimer = null;
+      let authReady = false;
+      let currentPage = "home";
+      let authMode = "login";
+      let moduleApp = null;
+      let authSubmitBusy = false;
 
-      window.NOVA_BOOT = {
-        ready() {
-          appReady = true;
-          clearTimeout(bootTimer);
-
-          const screen = document.getElementById("boot-screen");
-          if (screen) {
-            screen.classList.add("boot-hidden");
-            window.setTimeout(() => {
-              screen.classList.add("hidden");
-            }, 400);
-          }
-        },
-
-        fail(message) {
-          const status = document.getElementById("boot-status");
-          const screen = document.getElementById("boot-screen");
-
-          if (status) {
-            status.textContent = message || "تعذر بدء التطبيق. يمكنك إعادة المحاولة.";
-          }
-
-          if (screen) {
-            screen.classList.remove("boot-hidden", "hidden");
-            screen.classList.add("boot-error");
-          }
-        },
-
-        show() {
-          const screen = document.getElementById("boot-screen");
-          if (screen) {
-            screen.classList.remove("hidden", "boot-hidden", "boot-error");
-          }
-        }
+      const titles = {
+        home: ["الرئيسية", "أهلاً بك في نوفا"],
+        search: ["استكشاف", "اكتشف أشخاصًا ومحتوى جديدًا"],
+        messages: ["الرسائل", "محادثاتك في مكان واحد"],
+        notifications: ["الإشعارات", "آخر المستجدات الخاصة بحسابك"],
+        communities: ["المجتمعات", "تواصل حول اهتماماتك"],
+        profile: ["ملفي الشخصي", "هويتك على نوفا"],
+        settings: ["الإعدادات", "تحكم في حسابك وخصوصيتك"]
       };
 
-      document.getElementById("boot-retry")?.addEventListener("click", () => {
-        window.location.reload();
-      });
+      function toast(message, type = "") {
+        const container = document.getElementById("toast-container");
+        if (!container) return;
 
-      /*
-        المهلة لا تحوّل المستخدم إلى شاشة خاطئة.
-        إذا لم يبدأ app.js، نظهر رسالة واضحة بدل شاشة لا تنتهي.
-      */
-      bootTimer = window.setTimeout(() => {
-        if (appReady) return;
+        const item = document.createElement("div");
+        item.className = `toast ${type}`;
+        item.textContent = String(message);
+        container.appendChild(item);
 
-        const appStarted = document.documentElement.dataset.novaStarted === "true";
-        if (!appStarted) {
-          window.NOVA_BOOT.fail(
-            "التطبيق لم يبدأ بصورة صحيحة. تحقق من ملفات JavaScript ثم أعد المحاولة."
-          );
-        }
-      }, 12000);
-
-      /*
-        تبديل نماذج المصادقة الأساسية.
-        لا ينفذ أي عملية دخول بنفسه؛ auth.js يتولى ذلك.
-      */
-      const panels = {
-        login: document.getElementById("login-panel"),
-        register: document.getElementById("register-panel"),
-        reset: document.getElementById("reset-panel")
-      };
-
-      function showAuthPanel(name) {
-        Object.entries(panels).forEach(([key, panel]) => {
-          panel?.classList.toggle("hidden", key !== name);
-        });
-
-        document.querySelectorAll(".auth-error, .auth-success").forEach((element) => {
-          element.textContent = "";
-        });
+        setTimeout(() => item.remove(), 4000);
       }
 
-      document.getElementById("show-register-btn")?.addEventListener("click", () => {
-        showAuthPanel("register");
-      });
+      window.NOVA_UI = {
+        toast,
+        navigate: openPage,
+        showAuth: () => showScreen("auth"),
+        showApp: () => showScreen("app")
+      };
 
-      document.getElementById("show-login-btn")?.addEventListener("click", () => {
-        showAuthPanel("login");
-      });
+      function showScreen(name) {
+        splash.classList.add("loading-exit");
+        authScreen.classList.add("hidden");
+        appScreen.classList.remove("active");
 
-      document.getElementById("forgot-password-btn")?.addEventListener("click", () => {
-        const loginEmail = document.getElementById("login-email")?.value || "";
-        const resetEmail = document.getElementById("reset-email");
-        if (resetEmail && loginEmail) resetEmail.value = loginEmail;
-        showAuthPanel("reset");
-      });
-
-      document.getElementById("back-to-login-btn")?.addEventListener("click", () => {
-        showAuthPanel("login");
-      });
-
-      /*
-        التنقل الأساسي بين الصفحات.
-        نستدعي NOVA.navigate إن كان app.js قد جهزه.
-      */
-      document.addEventListener("click", (event) => {
-        const button = event.target.closest("[data-page]");
-        if (!button) return;
-
-        const page = button.getAttribute("data-page");
-        if (!page) return;
-
-        if (typeof window.NOVA?.navigate === "function") {
-          window.NOVA.navigate(page);
-        } else {
-          document.dispatchEvent(new CustomEvent("nova:navigate", {
-            detail: { page }
-          }));
+        if (name === "app") {
+          appScreen.classList.add("active");
+          authScreen.classList.add("hidden");
+        } else if (name === "auth") {
+          authScreen.classList.remove("hidden");
         }
-      });
 
-      /*
-        فتح شاشة إنشاء منشور.
-        app.js سيجهز الدالة الفعلية.
-      */
-      ["open-create-post", "home-create-post", "composer-trigger", "composer-publish"]
-        .forEach((id) => {
-          document.getElementById(id)?.addEventListener("click", () => {
-            if (typeof window.NOVA?.openCreatePost === "function") {
-              window.NOVA.openCreatePost();
-            } else {
-              document.dispatchEvent(new CustomEvent("nova:create-post"));
-            }
-          });
+        document.body.style.overflow = "";
+      }
+
+      function finishSplash() {
+        if (splashFinished) return;
+        splashFinished = true;
+
+        splash.classList.add("loading-exit");
+
+        // انتظر نهاية تأثير الاختفاء، ثم أظهر الشاشة التي حُددت.
+        setTimeout(() => {
+          if (appReady) {
+            showScreen("app");
+          } else if (authReady) {
+            showScreen("auth");
+          } else {
+            // لا تترك المستخدم عالقًا إذا تعذر تشغيل وحدة التطبيق.
+            showScreen("auth");
+            setAuthMessage(
+              "تعذر التحقق من الجلسة. راجع ملفات JavaScript وإعدادات Supabase ثم أعد تحميل الصفحة."
+            );
+          }
+        }, 370);
+      }
+
+      // مدة شاشة التحميل: 5 ثوانٍ.
+      // بعدها لا نعتمد على app.js وحده لإخفاء شاشة البداية.
+      setTimeout(finishSplash, 5000);
+
+      function setAuthMessage(message, success = false) {
+        const box = document.getElementById("auth-message");
+        if (!box) return;
+        box.textContent = message || "";
+        box.classList.toggle("show", Boolean(message));
+        box.style.background = success
+          ? "rgba(32,212,123,.10)"
+          : "rgba(255,83,100,.10)";
+        box.style.color = success ? "#7df0b0" : "#ff9ca7";
+      }
+
+      function setAuthMode(mode) {
+        authMode = mode;
+
+        const isSignup = mode === "signup";
+        document.getElementById("auth-title").textContent =
+          isSignup ? "إنشاء حساب جديد" : "أهلًا بعودتك";
+        document.getElementById("auth-subtitle").textContent =
+          isSignup ? "أنشئ حسابك وابدأ رحلتك مع نوفا." : "سجّل الدخول للمتابعة إلى حسابك.";
+        document.getElementById("auth-submit").textContent =
+          isSignup ? "إنشاء الحساب" : "تسجيل الدخول";
+        document.getElementById("auth-switch-label").textContent =
+          isSignup ? "لديك حساب بالفعل؟" : "ليس لديك حساب؟";
+        document.getElementById("auth-switch-btn").textContent =
+          isSignup ? "تسجيل الدخول" : "إنشاء حساب";
+        document.getElementById("auth-name-field").classList.toggle("hidden", !isSignup);
+        document.getElementById("auth-username-field").classList.toggle("hidden", !isSignup);
+        document.getElementById("auth-password").autocomplete =
+          isSignup ? "new-password" : "current-password";
+
+        setAuthMessage("");
+      }
+
+      function openPage(page) {
+        if (!titles[page]) page = "home";
+        currentPage = page;
+
+        document.querySelectorAll("[data-page-section]").forEach(section => {
+          section.classList.toggle(
+            "active",
+            section.dataset.pageSection === page
+          );
         });
 
-      ["composer-photo", "composer-story", "composer-story-shortcut", "add-first-story"]
-        .forEach((id) => {
-          document.getElementById(id)?.addEventListener("click", () => {
-            if (id === "composer-story" || id === "composer-story-shortcut" || id === "add-first-story") {
-              document.getElementById("story-media-input")?.click();
-              return;
-            }
-
-            document.getElementById("post-media-input")?.click();
-          });
+        document.querySelectorAll("[data-page]").forEach(button => {
+          button.classList.toggle("active", button.dataset.page === page);
         });
 
-      document.getElementById("change-cover-btn")?.addEventListener("click", () => {
-        document.getElementById("cover-file-input")?.click();
-      });
-
-      document.getElementById("edit-profile-btn")?.addEventListener("click", () => {
-        if (typeof window.NOVA?.openEditProfile === "function") {
-          window.NOVA.openEditProfile();
-        } else {
-          document.dispatchEvent(new CustomEvent("nova:edit-profile"));
-        }
-      });
-
-      document.getElementById("settings-edit-profile")?.addEventListener("click", () => {
-        if (typeof window.NOVA?.openEditProfile === "function") {
-          window.NOVA.openEditProfile();
-        } else {
-          document.dispatchEvent(new CustomEvent("nova:edit-profile"));
-        }
-      });
-
-      document.getElementById("settings-logout")?.addEventListener("click", () => {
-        document.getElementById("logout-btn")?.click();
-      });
-
-      document.getElementById("profile-share-btn")?.addEventListener("click", async () => {
-        const url = window.location.href;
+        document.getElementById("page-title").textContent = titles[page][0];
+        document.getElementById("page-subtitle").textContent = titles[page][1];
 
         try {
-          if (navigator.share) {
-            await navigator.share({
-              title: "NOVA SOCIAL",
-              text: "تابع ملفي الشخصي على NOVA SOCIAL",
-              url
-            });
-          } else if (navigator.clipboard?.writeText) {
-            await navigator.clipboard.writeText(url);
-            if (typeof window.NOVA?.toast === "function") {
-              window.NOVA.toast("تم نسخ رابط الصفحة.", "success");
-            }
-          } else {
-            window.prompt("انسخ رابط الصفحة:", url);
+          history.replaceState({ page }, "", `#${page}`);
+        } catch (_) {}
+
+        // اطلب تحديث بيانات الصفحة عند توفر الوحدة المعنية.
+        try {
+          if (page === "home") {
+            window.NOVA?.social?.loadFeed?.();
+          } else if (page === "messages") {
+            window.NOVA?.messages?.loadConversations?.();
+          } else if (page === "notifications") {
+            window.NOVA?.notifications?.loadNotifications?.();
+          } else if (page === "communities") {
+            window.NOVA?.communities?.loadCommunities?.();
+            window.NOVA?.communities?.loadMyCommunities?.();
+          } else if (page === "profile") {
+            window.NOVA?.profile?.load?.();
+          } else if (page === "settings") {
+            window.NOVA?.settings?.loadSettings?.();
           }
         } catch (error) {
-          if (error?.name !== "AbortError") {
-            console.error("Profile share failed:", error);
+          console.error("NOVA page loading error:", error);
+        }
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      document.addEventListener("click", event => {
+        const nav = event.target.closest("[data-page]");
+        if (nav) {
+          openPage(nav.dataset.page);
+        }
+      });
+
+      document.querySelectorAll(".user-mini[data-page]").forEach(element => {
+        element.addEventListener("keydown", event => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openPage(element.dataset.page);
           }
+        });
+      });
+
+      document.getElementById("welcome-explore-btn").addEventListener("click", () => {
+        openPage("search");
+      });
+
+      document.getElementById("top-search-btn").addEventListener("click", () => {
+        openPage("search");
+      });
+
+      document.getElementById("top-notifications-btn").addEventListener("click", () => {
+        openPage("notifications");
+      });
+
+      document.getElementById("top-profile-btn").addEventListener("click", () => {
+        openPage("profile");
+      });
+
+      document.getElementById("auth-switch-btn").addEventListener("click", () => {
+        setAuthMode(authMode === "login" ? "signup" : "login");
+      });
+
+      document.getElementById("auth-forgot-btn").addEventListener("click", async () => {
+        const email = document.getElementById("auth-email").value.trim();
+
+        if (!email) {
+          setAuthMessage("اكتب بريدك الإلكتروني أولًا، ثم اضغط على استعادة كلمة المرور.");
+          document.getElementById("auth-email").focus();
+          return;
+        }
+
+        try {
+          const auth = await import("./auth.js");
+          const client = window.NOVA?.supabase?.client ||
+                        window.NOVA?.supabase?.supabase ||
+                        window.supabase;
+
+          if (typeof auth.sendPasswordReset === "function") {
+            await auth.sendPasswordReset(email);
+            setAuthMessage("إذا كان البريد مسجلًا، فستصلك تعليمات استعادة كلمة المرور.", true);
+          } else if (client?.auth?.resetPasswordForEmail) {
+            const { error } = await client.auth.resetPasswordForEmail(email);
+            if (error) throw error;
+            setAuthMessage("إذا كان البريد مسجلًا، فستصلك تعليمات استعادة كلمة المرور.", true);
+          } else {
+            setAuthMessage("ميزة الاستعادة تحتاج إلى ربطها بدالة استعادة كلمة المرور في auth.js.");
+          }
+        } catch (error) {
+          setAuthMessage(error.message || "تعذر إرسال رابط الاستعادة.");
         }
       });
 
-      document.getElementById("global-search-form")?.addEventListener("submit", (event) => {
+      // يمنع إعادة إرسال النموذج أكثر من مرة أثناء الطلب.
+      document.getElementById("auth-form").addEventListener("submit", async event => {
         event.preventDefault();
-        const input = document.getElementById("global-search-input");
-        const query = input?.value?.trim() || "";
-        const peopleInput = document.getElementById("people-search-input");
 
-        if (peopleInput) peopleInput.value = query;
+        if (authSubmitBusy) return;
+        authSubmitBusy = true;
 
-        if (typeof window.NOVA?.navigate === "function") {
-          window.NOVA.navigate("search");
-        } else {
-          document.dispatchEvent(new CustomEvent("nova:navigate", {
-            detail: { page: "search" }
-          }));
-        }
+        const submit = document.getElementById("auth-submit");
+        submit.disabled = true;
+        submit.textContent = "جارٍ التنفيذ...";
+        setAuthMessage("");
 
-        if (query) {
-          document.getElementById("people-search-form")?.requestSubmit();
+        const email = document.getElementById("auth-email").value.trim();
+        const password = document.getElementById("auth-password").value;
+        const fullName = document.getElementById("auth-full-name").value.trim();
+        const username = document.getElementById("auth-username").value.trim();
+
+        try {
+          const auth = await import("./auth.js");
+
+          if (authMode === "signup") {
+            if (!fullName) throw new Error("اكتب اسمك الكامل.");
+            if (username.length < 3) throw new Error("اسم المستخدم يجب أن يكون 3 أحرف على الأقل.");
+
+            const signupFn =
+              auth.signUp ||
+              auth.signup ||
+              auth.register ||
+              auth.createAccount;
+
+            if (typeof signupFn !== "function") {
+              throw new Error("ملف auth.js لا يحتوي على دالة إنشاء الحساب المتوقعة.");
+            }
+
+            await signupFn({
+              email,
+              password,
+              fullName,
+              full_name: fullName,
+              username
+            });
+
+            setAuthMessage(
+              "تم إرسال طلب إنشاء الحساب. إذا طلب Supabase تأكيد البريد، افتح بريدك وأكّد الحساب ثم سجّل الدخول.",
+              true
+            );
+            setAuthMode("login");
+          } else {
+            const loginFn =
+              auth.signIn ||
+              auth.login ||
+              auth.signin ||
+              auth.loginUser;
+
+            if (typeof loginFn !== "function") {
+              throw new Error("ملف auth.js لا يحتوي على دالة تسجيل الدخول المتوقعة.");
+            }
+
+            const result = await loginFn({ email, password });
+
+            if (result?.error) throw result.error;
+
+            // بعض وحدات المصادقة تعيد المستخدم مباشرة،
+            // وبعضها تعتمد على حدث تغيّر الجلسة.
+            const user = result?.user || result?.data?.user ||
+                         result?.session?.user || null;
+
+            if (user) {
+              await activateApp(user);
+            } else {
+              setAuthMessage(
+                "تم إرسال طلب تسجيل الدخول. جارٍ انتظار تأكيد الجلسة...",
+                true
+              );
+            }
+          }
+        } catch (error) {
+          console.error("NOVA auth error:", error);
+          setAuthMessage(error?.message || "تعذر تنفيذ العملية. راجع إعدادات الاتصال.");
+        } finally {
+          authSubmitBusy = false;
+          submit.disabled = false;
+          submit.textContent = authMode === "signup" ? "إنشاء الحساب" : "تسجيل الدخول";
         }
       });
 
-      document.querySelectorAll("[data-profile-tab]").forEach((button) => {
-        button.addEventListener("click", () => {
-          document.querySelectorAll("[data-profile-tab]").forEach((item) => {
-            item.classList.toggle("active", item === button);
-          });
+      async function activateApp(user) {
+        appReady = true;
+        authReady = false;
 
-          document.dispatchEvent(new CustomEvent("nova:profile-tab", {
-            detail: { tab: button.dataset.profileTab }
-          }));
+        if (user) {
+          const displayName =
+            user.user_metadata?.full_name ||
+            user.user_metadata?.name ||
+            user.email?.split("@")[0] ||
+            "حسابي";
+
+          document.getElementById("sidebar-user-name").textContent = displayName;
+          document.getElementById("sidebar-user-handle").textContent =
+            "@" + (user.user_metadata?.username || user.email?.split("@")[0] || "user");
+          document.getElementById("welcome-title").textContent = `أهلًا ${displayName}`;
+
+          const initial = displayName.trim().charAt(0) || "N";
+          document.getElementById("sidebar-avatar").textContent = initial;
+          document.getElementById("composer-avatar").textContent = initial;
+          document.getElementById("top-avatar-letter").textContent = initial;
+        }
+
+        showScreen("app");
+        openPage(currentPage);
+
+        // حاول تمرير المستخدم إلى وحدة التطبيق إن كانت موجودة.
+        try {
+          if (window.NOVA?.app?.handleAuthState) {
+            await window.NOVA.app.handleAuthState("SIGNED_IN", { user });
+          } else if (window.NOVA?.profile?.setUser) {
+            window.NOVA.profile.setUser(user);
+          }
+        } catch (error) {
+          console.error("NOVA activation error:", error);
+        }
+      }
+
+      // أزرار الخروج — نستخدم دوال المشروع إذا كانت متاحة.
+      async function signOut() {
+        try {
+          const app = window.NOVA?.app;
+          if (typeof app?.signOut === "function") {
+            await app.signOut();
+          } else {
+            const auth = await import("./auth.js");
+            const signOutFn = auth.signOut || auth.logout || auth.logoutUser;
+
+            if (typeof signOutFn === "function") {
+              await signOutFn();
+            } else {
+              throw new Error("لم يتم العثور على دالة تسجيل الخروج في auth.js.");
+            }
+          }
+
+          appReady = false;
+          authReady = true;
+          setAuthMode("login");
+          showScreen("auth");
+        } catch (error) {
+          toast(error.message || "تعذر تسجيل الخروج.", "error");
+        }
+      }
+
+      document.getElementById("sidebar-logout-btn").addEventListener("click", signOut);
+      document.getElementById("settings-logout-btn").addEventListener("click", signOut);
+
+      document.getElementById("refresh-feed-btn").addEventListener("click", () => {
+        window.NOVA?.social?.loadFeed?.();
+      });
+
+      document.getElementById("refresh-messages-btn").addEventListener("click", () => {
+        window.NOVA?.messages?.loadConversations?.();
+      });
+
+      document.getElementById("refresh-notifications-btn").addEventListener("click", () => {
+        window.NOVA?.notifications?.loadNotifications?.();
+      });
+
+      document.getElementById("refresh-communities-btn").addEventListener("click", () => {
+        window.NOVA?.communities?.loadCommunities?.();
+        window.NOVA?.communities?.loadMyCommunities?.();
+      });
+
+      document.getElementById("create-community-btn").addEventListener("click", () => {
+        if (typeof window.NOVA?.communities?.openCreateCommunityModal === "function") {
+          window.NOVA.communities.openCreateCommunityModal();
+        } else {
+          toast("واجهة إنشاء المجتمع تحتاج إلى ربطها بوحدة communities.js.");
+        }
+      });
+
+      document.getElementById("community-create-btn")?.addEventListener("click", () => {
+        window.NOVA?.communities?.openCreateCommunityModal?.();
+      });
+
+      document.getElementById("community-search-form").addEventListener("submit", event => {
+        event.preventDefault();
+        const query = document.getElementById("community-search-input").value.trim();
+        window.NOVA?.communities?.searchCommunities?.(query);
+      });
+
+      document.getElementById("people-search-form").addEventListener("submit", event => {
+        event.preventDefault();
+        const query = document.getElementById("people-search-input").value.trim();
+
+        if (!query) {
+          toast("اكتب اسم الشخص الذي تريد البحث عنه.");
+          return;
+        }
+
+        const social = window.NOVA?.social;
+        if (typeof social?.searchUsers === "function") {
+          social.searchUsers(query);
+        } else if (typeof social?.searchProfiles === "function") {
+          social.searchProfiles(query);
+        } else {
+          toast("البحث عن الأشخاص يحتاج إلى ربط دالته في social.js.");
+        }
+      });
+
+      document.getElementById("message-search-input").addEventListener("input", event => {
+        const query = event.target.value.trim().toLowerCase();
+        document.querySelectorAll("#messages-list .message-card").forEach(card => {
+          card.classList.toggle("hidden", query && !card.textContent.toLowerCase().includes(query));
         });
       });
 
-      document.querySelectorAll("[data-settings-tab]").forEach((button) => {
-        button.addEventListener("click", () => {
-          const tab = button.dataset.settingsTab;
+      document.getElementById("create-post-form").addEventListener("submit", async event => {
+        event.preventDefault();
 
-          document.querySelectorAll("[data-settings-tab]").forEach((item) => {
-            item.classList.toggle("active", item === button);
-          });
+        const body = document.getElementById("post-body-input").value.trim();
+        const fileInput = document.getElementById("post-media-input");
+        const file = fileInput.files?.[0];
 
-          document.querySelectorAll("[data-settings-panel]").forEach((panel) => {
-            panel.classList.toggle("hidden", panel.dataset.settingsPanel !== tab);
-          });
-        });
-      });
+        if (!body && !file) {
+          toast("اكتب نص المنشور أو اختر صورة أو فيديو.", "error");
+          return;
+        }
 
-      document.getElementById("modal-close")?.addEventListener("click", () => {
-        if (typeof window.NOVA?.closeModal === "function") {
-          window.NOVA.closeModal();
-        } else {
-          document.getElementById("modal-backdrop")?.classList.add("hidden");
-          document.body.classList.remove("modal-open");
+        const button = document.getElementById("publish-post-btn");
+        button.disabled = true;
+        button.textContent = "جارٍ النشر...";
+
+        try {
+          const social = window.NOVA?.social;
+          const createFn =
+            social?.createPost ||
+            social?.publishPost ||
+            social?.addPost;
+
+          if (typeof createFn !== "function") {
+            throw new Error("دالة إنشاء المنشور غير متاحة في social.js. تأكد من ربط اسم الدالة.");
+          }
+
+          await createFn({ body, text: body, content: body, file, media: file });
+
+          document.getElementById("post-body-input").value = "";
+          fileInput.value = "";
+          toast("تم إرسال المنشور.", "success");
+          social.loadFeed?.();
+        } catch (error) {
+          console.error("NOVA post error:", error);
+          toast(error.message || "تعذر نشر المنشور.", "error");
+        } finally {
+          button.disabled = false;
+          button.textContent = "نشر المنشور";
         }
       });
 
-      document.getElementById("modal-backdrop")?.addEventListener("click", (event) => {
-        if (event.target.id !== "modal-backdrop") return;
+      document.getElementById("edit-profile-btn").addEventListener("click", () => {
+        window.NOVA?.profile?.openEditModal?.();
+      });
 
-        if (typeof window.NOVA?.closeModal === "function") {
-          window.NOVA.closeModal();
+      document.getElementById("settings-edit-profile").addEventListener("click", () => {
+        window.NOVA?.profile?.openEditModal?.();
+      });
+
+      document.getElementById("profile-share-btn").addEventListener("click", () => {
+        if (window.NOVA?.profile?.share) {
+          window.NOVA.profile.share();
+          return;
+        }
+
+        const url = location.href.split("#")[0] + "#profile";
+        if (navigator.share) {
+          navigator.share({ title: "NOVA SOCIAL", url }).catch(() => {});
+        } else if (navigator.clipboard?.writeText) {
+          navigator.clipboard.writeText(url)
+            .then(() => toast("تم نسخ رابط الصفحة.", "success"))
+            .catch(() => toast(url));
         } else {
-          event.currentTarget.classList.add("hidden");
-          document.body.classList.remove("modal-open");
+          toast(url);
         }
       });
 
-      document.addEventListener("keydown", (event) => {
-        if (event.key !== "Escape") return;
+      document.getElementById("avatar-file-input").addEventListener("change", event => {
+        const file = event.target.files?.[0];
+        if (file) window.NOVA?.profile?.uploadAvatar?.(file);
+      });
 
-        const backdrop = document.getElementById("modal-backdrop");
-        if (!backdrop || backdrop.classList.contains("hidden")) return;
+      document.getElementById("cover-file-input").addEventListener("change", event => {
+        const file = event.target.files?.[0];
+        if (file) window.NOVA?.profile?.uploadCover?.(file);
+      });
 
-        if (typeof window.NOVA?.closeModal === "function") {
-          window.NOVA.closeModal();
-        } else {
-          backdrop.classList.add("hidden");
-          document.body.classList.remove("modal-open");
+      document.getElementById("save-settings-btn").addEventListener("click", async () => {
+        try {
+          const settings = window.NOVA?.settings;
+          if (typeof settings?.saveSettings !== "function") {
+            throw new Error("دالة حفظ الإعدادات غير متاحة في settings.js.");
+          }
+
+          const values = {
+            theme: document.getElementById("setting-theme").value,
+            language: document.getElementById("setting-language").value,
+            notifications_enabled: document.getElementById("setting-notifications").checked,
+            message_notifications: document.getElementById("setting-message-notifications").checked,
+            follow_notifications: document.getElementById("setting-follow-notifications").checked,
+            email_notifications: document.getElementById("setting-email-notifications").checked,
+            profile_visibility: document.getElementById("setting-profile-visibility").value,
+            show_online_status: document.getElementById("setting-online-status").checked,
+            allow_message_requests: document.getElementById("setting-message-requests").checked
+          };
+
+          await settings.saveSettings(values);
+          toast("تم إرسال إعداداتك للحفظ.", "success");
+        } catch (error) {
+          toast(error.message || "تعذر حفظ الإعدادات.", "error");
         }
       });
 
-      /*
-        هذه الصفحة يجب أن تعمل عبر خادم HTTPS مثل GitHub Pages.
-        تسجيل Service Worker سيضاف في ملف التطبيق بعد تجهيز الملف نفسه.
-      */
+      document.getElementById("settings-reset-btn").addEventListener("click", () => {
+        window.NOVA?.settings?.loadSettings?.();
+        toast("جارٍ تحديث الإعدادات.");
+      });
+
+      document.getElementById("change-password-btn").addEventListener("click", async () => {
+        const password = document.getElementById("setting-new-password").value;
+        const confirm = document.getElementById("setting-confirm-password").value;
+
+        if (password.length < 6) {
+          toast("كلمة المرور يجب أن تكون 6 أحرف على الأقل.", "error");
+          return;
+        }
+
+        if (password !== confirm) {
+          toast("كلمتا المرور غير متطابقتين.", "error");
+          return;
+        }
+
+        try {
+          const settings = window.NOVA?.settings;
+          if (typeof settings?.changePassword !== "function") {
+            throw new Error("دالة تغيير كلمة المرور غير متاحة.");
+          }
+
+          await settings.changePassword(password);
+          document.getElementById("setting-new-password").value = "";
+          document.getElementById("setting-confirm-password").value = "";
+          toast("تم إرسال طلب تغيير كلمة المرور.", "success");
+        } catch (error) {
+          toast(error.message || "تعذر تغيير كلمة المرور.", "error");
+        }
+      });
+
+      document.getElementById("reset-password-btn").addEventListener("click", async () => {
+        try {
+          const settings = window.NOVA?.settings;
+          if (typeof settings?.sendPasswordReset !== "function") {
+            throw new Error("دالة استعادة كلمة المرور غير متاحة.");
+          }
+
+          await settings.sendPasswordReset();
+          toast("تم إرسال طلب استعادة كلمة المرور.", "success");
+        } catch (error) {
+          toast(error.message || "تعذر إرسال رابط الاستعادة.", "error");
+        }
+      });
+
+      // مراقبة أحداث المصادقة: إذا كان app.js يحدّث الواجهة، نسمح له بذلك أيضًا.
+      window.addEventListener("nova:authenticated", event => {
+        activateApp(event.detail?.user || null);
+      });
+
+      window.addEventListener("nova:unauthenticated", () => {
+        appReady = false;
+        authReady = true;
+        showScreen("auth");
+      });
+
+      // بدء تشغيل app.js بشكل مستقل حتى لا تعتمد الشاشة على مؤقت التحميل وحده.
+      async function bootAppModule() {
+        try {
+          moduleApp = await import("./app.js");
+
+          const app = window.NOVA?.app;
+
+          if (typeof app?.initialize === "function") {
+            await app.initialize();
+          } else if (typeof moduleApp.initialize === "function") {
+            await moduleApp.initialize();
+          } else if (typeof moduleApp.default === "function") {
+            await moduleApp.default();
+          } else {
+            console.warn("NOVA app.js لم يصدّر initialize متوافقًا.");
+          }
+
+          // app.js قد يعيد الجلسة ويحدد الشاشة بنفسه.
+          const user = app?.getCurrentUser?.();
+
+          if (user) {
+            await activateApp(user);
+          } else if (!appReady) {
+            authReady = true;
+          }
+        } catch (error) {
+          console.error("NOVA boot error:", error);
+          authReady = true;
+          caption.textContent = "تعذر الاتصال؛ جارٍ تجهيز شاشة الدخول...";
+        }
+      }
+
+      // ابدأ تحميل وحدات التطبيق فورًا، لكن لا تجعلها تتحكم في مدة شاشة البداية.
+      bootAppModule();
+
+      // دعم الروابط الداخلية مثل #messages.
+      window.addEventListener("hashchange", () => {
+        const page = location.hash.replace("#", "");
+        if (titles[page]) openPage(page);
+      });
+
+      // افتراضيًا، لا نعرض بيانات وهمية ولا ندّعي أن المستخدم مسجل.
+      setAuthMode("login");
+
     })();
   </script>
 
-  <!-- مكتبة Supabase المطلوبة في supabase.js -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- الملفات الموجودة في المشروع -->
-  <script type="module" src="./app.js"></script>
 </body>
-  </html>
+                </html>
