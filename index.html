@@ -1,1440 +1,1003 @@
+احفظ الكود التالي كاملًا باسم "index.html":
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#06110d">
-  <meta name="description" content="NOVA SOCIAL — تواصل، شارك، واكتشف مجتمعك.">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-  <title>NOVA SOCIAL — نوفا</title>
-
-  <link rel="icon" href="./nova-icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="./nova-icon.svg">
-  <link rel="manifest" href="./manifest.json">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-  <style>
-    :root {
-      --bg:#06110d;
-      --bg2:#091812;
-      --panel:#0d1d15;
-      --panel2:#11251a;
-      --panel3:#172c20;
-      --green:#20d47b;
-      --green2:#43f59b;
-      --green-dark:#0a9d55;
-      --text:#f2fff7;
-      --muted:#91a99a;
-      --border:#20382a;
-      --red:#ff5f67;
-      --yellow:#f8d477;
-      --radius:22px;
-      --shadow:0 18px 60px #0005;
-    }
-
-    * {
-      box-sizing:border-box;
-      -webkit-tap-highlight-color:transparent;
-    }
-
-    html {
-      scroll-behavior:smooth;
-      background:var(--bg);
-    }
-
-    body {
-      margin:0;
-      min-height:100vh;
-      background:
-        radial-gradient(ellipse at 0% 0%,#123a2535,transparent 40%),
-        radial-gradient(ellipse at 100% 100%,#0d432335,transparent 35%),
-        var(--bg);
-      color:var(--text);
-      font-family:"Cairo","IBM Plex Sans Arabic",sans-serif;
-      overflow-x:hidden;
-    }
-
-    button,input,textarea,select {
-      font:inherit;
-    }
-
-    button {
-      cursor:pointer;
-    }
-
-    button:disabled {
-      opacity:.55;
-      cursor:not-allowed;
-    }
-
-    input,textarea,select {
-      color:var(--text);
-    }
-
-    input::placeholder,textarea::placeholder {
-      color:#789182;
-    }
-
-    a {
-      color:inherit;
-      text-decoration:none;
-    }
-
-    img {
-      max-width:100%;
-    }
-
-    .hidden,[hidden] {
-      display:none!important;
-    }
-
-    .muted {
-      color:var(--muted);
-    }
-
-    .small {
-      font-size:12px;
-    }
-
-    .brand {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:0;
-    }
-
-    .brand-icon {
-      display:grid;
-      place-items:center;
-      width:48px;
-      height:48px;
-      flex-shrink:0;
-      border-radius:17px;
-      color:#03160b;
-      background:linear-gradient(145deg,#57ffad,#0dbd68);
-      box-shadow:0 10px 35px #20d47b30;
-    }
-
-    .brand-icon svg {
-      width:34px;
-      height:34px;
-    }
-
-    .brand-name {
-      font-family:"Cairo",sans-serif;
-      font-size:23px;
-      line-height:1.2;
-      font-weight:900;
-      letter-spacing:.3px;
-    }
-
-    .brand-subtitle {
-      color:var(--muted);
-      font-size:11px;
-      margin-top:3px;
-    }
-
-    .btn {
-      min-height:43px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:9px;
-      padding:10px 17px;
-      border:1px solid var(--border);
-      border-radius:14px;
-      background:var(--panel2);
-      color:var(--text);
-      font-weight:800;
-      transition:transform .18s,border-color .18s,background .18s;
-    }
-
-    .btn:hover {
-      border-color:#3d7051;
-      transform:translateY(-1px);
-    }
-
-    .btn-primary {
-      border-color:transparent;
-      background:linear-gradient(135deg,#39ee91,#12b964);
-      color:#032013;
-      box-shadow:0 8px 24px #20d47b20;
-    }
-
-    .btn-danger {
-      color:#ff9a9f;
-      border-color:#652d32;
-      background:#32171a;
-    }
-
-    .btn-block {
-      width:100%;
-    }
-
-    .icon-btn {
-      width:43px;
-      height:43px;
-      display:grid;
-      place-items:center;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:var(--panel);
-      color:var(--text);
-      flex-shrink:0;
-    }
-
-    .field {
-      display:grid;
-      gap:7px;
-      margin-bottom:16px;
-    }
-
-    .field label {
-      font-size:13px;
-      font-weight:800;
-      color:#d9eee0;
-    }
-
-    .input {
-      width:100%;
-      min-height:48px;
-      padding:12px 14px;
-      border:1px solid var(--border);
-      border-radius:14px;
-      outline:none;
-      background:#07140d;
-      color:var(--text);
-      transition:border-color .2s,box-shadow .2s;
-    }
-
-    .input:focus {
-      border-color:var(--green);
-      box-shadow:0 0 0 3px #20d47b17;
-    }
-
-    textarea.input {
-      min-height:110px;
-      resize:vertical;
-    }
-
-    .card {
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      background:linear-gradient(145deg,#102219,#0b1911);
-      box-shadow:0 10px 40px #00012;
-    }
-
-    .card-pad {
-      padding:20px;
-    }
-
-    .section-title {
-      margin:0 0 8px;
-      font-size:20px;
-      font-weight:900;
-    }
-
-    .section-subtitle {
-      margin:0 0 20px;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    /* شاشة البداية */
-
-    #loading-screen {
-      position:fixed;
-      inset:0;
-      z-index:9999;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      gap:20px;
-      background:
-        radial-gradient(ellipse at 50% 40%,#16442a80,transparent 45%),
-        #040c08;
-      padding:24px;
-      transition:opacity .35s,visibility .35s;
-    }
-
-    #loading-screen.fade-out {
-      opacity:0;
-      visibility:hidden;
-      pointer-events:none;
-    }
-
-    .splash-logo {
-      width:118px;
-      height:118px;
-      border-radius:38px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(145deg,#50ffac,#0bb863);
-      box-shadow:0 0 0 12px #20d47b0b,0 0 80px #20d47b35;
-      animation:splashFloat 2.3s ease-in-out infinite;
-    }
-
-    .splash-logo svg {
-      width:82px;
-      height:82px;
-    }
-
-    @keyframes splashFloat {
-      0%,100% {transform:translateY(0) scale(1)}
-      50% {transform:translateY(-8px) scale(1.025)}
-    }
-
-    .splash-title {
-      font-size:38px;
-      font-weight:900;
-      letter-spacing:2px;
-    }
-
-    .splash-caption {
-      color:var(--muted);
-      font-size:13px;
-      text-align:center;
-    }
-
-    .loader-track {
-      width:170px;
-      height:4px;
-      border-radius:20px;
-      background:#183423;
-      overflow:hidden;
-    }
-
-    .loader-progress {
-      height:100%;
-      width:40%;
-      border-radius:20px;
-      background:linear-gradient(90deg,var(--green),#b0ffd3);
-      animation:loaderMove 1.25s ease-in-out infinite;
-    }
-
-    @keyframes loaderMove {
-      0% {transform:translateX(180%)}
-      100% {transform:translateX(-280%)}
-    }
-
-    /* تسجيل الدخول */
-
-    #auth-screen {
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      padding:25px 16px;
-    }
-
-    .auth-layout {
-      width:min(100%,1000px);
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      overflow:hidden;
-      border:1px solid var(--border);
-      border-radius:30px;
-      background:#09160f;
-      box-shadow:var(--shadow);
-    }
-
-    .auth-visual {
-      position:relative;
-      min-height:590px;
-      padding:45px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 25% 25%,#28f48b27,transparent 35%),
-        linear-gradient(145deg,#102d1c,#07130c);
-    }
-
-    .auth-visual::before,
-    .auth-visual::after {
-      content:"";
-      position:absolute;
-      border:1px solid #3dfb9c22;
-      border-radius:50%;
-      pointer-events:none;
-    }
-
-    .auth-visual::before {
-      width:400px;
-      height:400px;
-      left:-150px;
-      top:120px;
-    }
-
-    .auth-visual::after {
-      width:280px;
-      height:280px;
-      left:-90px;
-      top:180px;
-    }
-
-    .visual-copy {
-      position:relative;
-      z-index:1;
-      margin:auto 0;
-    }
-
-    .visual-copy h1 {
-      font-size:40px;
-      line-height:1.5;
-      margin:0 0 15px;
-      font-weight:900;
-    }
-
-    .visual-copy p {
-      color:#b2cabb;
-      line-height:2;
-      max-width:400px;
-    }
-
-    .visual-pills {
-      position:relative;
-      z-index:1;
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-
-    .pill {
-      padding:8px 12px;
-      border:1px solid #2d5b40;
-      border-radius:99px;
-      color:#c8f7da;
-      font-size:12px;
-      background:#0c2517b8;
-    }
-
-    .auth-panel {
-      padding:38px;
-      display:flex;
-      flex-direction:column;
-      justify-content:center;
-    }
-
-    .auth-panel h2 {
-      font-size:26px;
-      margin:0 0 8px;
-      font-weight:900;
-    }
-
-    .auth-tabs {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:7px;
-      padding:5px;
-      margin:24px 0;
-      border-radius:15px;
-      background:#06100b;
-      border:1px solid var(--border);
-    }
-
-    .auth-tab {
-      border:0;
-      border-radius:11px;
-      padding:10px;
-      background:transparent;
-      color:var(--muted);
-      font-weight:800;
-    }
-
-    .auth-tab.active {
-      background:#183a26;
-      color:var(--green2);
-    }
-
-    .auth-message {
-      padding:12px;
-      margin:0 0 14px;
-      border-radius:12px;
-      font-size:13px;
-      line-height:1.8;
-      background:#10281a;
-      border:1px solid #234c31;
-      color:#c8f7d8;
-      overflow-wrap:anywhere;
-    }
-
-    .auth-message.error {
-      background:#30171a;
-      border-color:#6b3035;
-      color:#ffb9bc;
-    }
-
-    .auth-footer {
-      text-align:center;
-      font-size:12px;
-      color:var(--muted);
-      margin-top:20px;
-    }
-
-    /* التطبيق */
-
-    #app-screen {
-      min-height:100vh;
-      padding-bottom:35px;
-    }
-
-    .topbar {
-      position:sticky;
-      top:0;
-      z-index:100;
-      min-height:76px;
-      padding:12px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      border-bottom:1px solid #1b3324;
-      background:#06110df0;
-      backdrop-filter:blur(18px);
-    }
-
-    .topbar-actions {
-      display:flex;
-      align-items:center;
-      gap:9px;
-    }
-
-    .app-layout {
-      width:min(1500px,100%);
-      margin:auto;
-      padding:24px;
-      display:grid;
-      grid-template-columns:245px minmax(0,1fr) 260px;
-      gap:22px;
-      align-items:start;
-    }
-
-    .sidebar {
-      position:sticky;
-      top:98px;
-      display:grid;
-      gap:15px;
-    }
-
-    .sidebar-card {
-      padding:16px;
-    }
-
-    .user-mini {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:0;
-    }
-
-    .avatar {
-      width:46px;
-      height:46px;
-      display:grid;
-      place-items:center;
-      flex-shrink:0;
-      overflow:hidden;
-      border-radius:16px;
-      background:linear-gradient(145deg,#2ee68a,#087943);
-      color:#042013;
-      font-weight:900;
-    }
-
-    .avatar img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .user-mini-info {
-      min-width:0;
-    }
-
-    .user-mini-info strong,
-    .user-mini-info span {
-      display:block;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-    }
-
-    .user-mini-info span {
-      color:var(--muted);
-      font-size:11px;
-    }
-
-    .nav-list {
-      display:grid;
-      gap:5px;
-    }
-
-    .nav-item {
-      width:100%;
-      min-height:47px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:11px 13px;
-      border:1px solid transparent;
-      border-radius:14px;
-      color:#b5c9bb;
-      background:transparent;
-      text-align:right;
-      font-weight:700;
-      transition:.2s;
-    }
-
-    .nav-item i {
-      width:21px;
-      text-align:center;
-      color:#8aab95;
-    }
-
-    .nav-item:hover,
-    .nav-item.active {
-      background:#153321;
-      color:#f3fff7;
-      border-color:#244a31;
-    }
-
-    .nav-item.active i {
-      color:var(--green2);
-    }
-
-    .main-content {
-      min-width:0;
-      display:grid;
-      gap:18px;
-    }
-
-    .page-heading {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:3px;
-    }
-
-    .page-heading h1 {
-      margin:0;
-      font-size:25px;
-      font-weight:900;
-    }
-
-    .page-view {
-      display:grid;
-      gap:18px;
-      min-width:0;
-    }
-
-    .welcome-card {
-      position:relative;
-      overflow:hidden;
-      padding:27px;
-      background:
-        radial-gradient(circle at 0% 0%,#35ed9025,transparent 42%),
-        linear-gradient(140deg,#143320,#0c1b12);
-    }
-
-    .welcome-card h2 {
-      margin:0 0 8px;
-      font-size:25px;
-      font-weight:900;
-    }
-
-    .welcome-card p {
-      color:#bdd5c5;
-      line-height:1.9;
-      margin:0 0 18px;
-    }
-
-    .composer {
-      padding:18px;
-    }
-
-    .composer-top {
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-    }
-
-    .composer textarea {
-      flex:1;
-      min-height:80px;
-    }
-
-    .composer-bottom {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-
-    .feed-list {
-      display:grid;
-      gap:15px;
-    }
-
-    .post-card {
-      padding:19px;
-      min-width:0;
-    }
-
-    .post-head {
-      display:flex;
-      align-items:center;
-      gap:11px;
-      margin-bottom:13px;
-    }
-
-    .post-head .user-mini-info {
-      flex:1;
-    }
-
-    .post-content {
-      line-height:2;
-      white-space:pre-wrap;
-      overflow-wrap:anywhere;
-      margin:10px 0 14px;
-    }
-
-    .post-media {
-      display:block;
-      width:100%;
-      max-height:500px;
-      object-fit:contain;
-      border-radius:17px;
-      background:#040b07;
-      margin-top:12px;
-    }
-
-    .post-actions {
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      padding-top:13px;
-      border-top:1px solid var(--border);
-    }
-
-    .post-action {
-      min-height:40px;
-      padding:8px 12px;
-      border:1px solid transparent;
-      border-radius:12px;
-      background:transparent;
-      color:#a9c1b2;
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .post-action:hover {
-      background:#183423;
-      color:var(--green2);
-    }
-
-    .post-action.liked {
-      color:#ff7b8b;
-    }
-
-    .empty-state {
-      text-align:center;
-      padding:40px 20px;
-      color:var(--muted);
-      line-height:2;
-    }
-
-    .empty-state i {
-      display:block;
-      font-size:32px;
-      color:#477655;
-      margin-bottom:13px;
-    }
-
-    .right-column {
-      position:sticky;
-      top:98px;
-      display:grid;
-      gap:15px;
-    }
-
-    .right-card {
-      padding:17px;
-    }
-
-    .right-card h3 {
-      margin:0 0 12px;
-      font-size:15px;
-    }
-
-    .feature-line {
-      display:flex;
-      align-items:center;
-      gap:11px;
-      margin:12px 0;
-      color:#c0d6c7;
-      font-size:13px;
-    }
-
-    .feature-line i {
-      color:var(--green);
-      width:19px;
-      text-align:center;
-    }
-
-    .search-row {
-      display:flex;
-      gap:8px;
-    }
-
-    .search-row .input {
-      min-width:0;
-      flex:1;
-    }
-
-    .list-results {
-      display:grid;
-      gap:10px;
-    }
-
-    .result-item {
-      display:flex;
-      align-items:center;
-      gap:11px;
-      padding:12px;
-      border:1px solid var(--border);
-      border-radius:15px;
-      background:#0b1911;
-    }
-
-    .result-item .user-mini-info {
-      flex:1;
-    }
-
-    .result-item p {
-      margin:3px 0 0;
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    .bottom-nav {
-      display:none;
-    }
-
-    .settings-grid {
-      display:grid;
-      gap:12px;
-    }
-
-    .setting-row {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:15px;
-      padding:14px 0;
-      border-bottom:1px solid var(--border);
-    }
-
-    .setting-row:last-child {
-      border-bottom:0;
-    }
-
-    .setting-row label {
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .setting-row select {
-      max-width:180px;
-    }
-
-    .toggle {
-      accent-color:var(--green);
-      width:19px;
-      height:19px;
-    }
-
-    .profile-cover {
-      min-height:160px;
-      border-radius:20px 20px 0 0;
-      background:
-        radial-gradient(circle at 20% 20%,#4dff9b38,transparent 35%),
-        linear-gradient(135deg,#19472b,#08180e);
-    }
-
-    .profile-body {
-      padding:20px;
-      margin-top:-2px;
-    }
-
-    .profile-avatar-large {
-      width:92px;
-      height:92px;
-      border-radius:28px;
-      border:5px solid var(--panel);
-      margin-top:-65px;
-      font-size:30px;
-    }
-
-    .toast-container {
-      position:fixed;
-      z-index:99999;
-      bottom:24px;
-      left:18px;
-      display:grid;
-      gap:9px;
-      width:min(400px,calc(100vw - 36px));
-      pointer-events:none;
-    }
-
-    .nova-toast {
-      padding:13px 16px;
-      border:1px solid #31543b;
-      border-radius:14px;
-      background:#10271a;
-      color:#e9fff0;
-      box-shadow:var(--shadow);
-      font-size:13px;
-      line-height:1.8;
-      animation:toastIn .25s ease;
-      overflow-wrap:anywhere;
-    }
-
-    .nova-toast.error {
-      background:#32171a;
-      border-color:#693039;
-    }
-
-    @keyframes toastIn {
-      from {opacity:0;transform:translateY(8px)}
-      to {opacity:1;transform:translateY(0)}
-    }
-
-    @media(max-width:1150px) {
-      .app-layout {
-        grid-template-columns:220px minmax(0,1fr);
-      }
-
-      .right-column {
-        display:none;
-      }
-    }
-
-    @media(max-width:760px) {
-      .topbar {
-        min-height:66px;
-        padding:10px 13px;
-      }
-
-      .topbar .brand-icon {
-        width:40px;
-        height:40px;
-        border-radius:13px;
-      }
-
-      .brand-name {
-        font-size:19px;
-      }
-
-      .brand-subtitle {
-        font-size:10px;
-      }
-
-      .topbar-actions {
-        gap:6px;
-      }
-
-      .topbar-actions .icon-btn {
-        width:39px;
-        height:39px;
-      }
-
-      .app-layout {
-        display:block;
-        padding:13px 12px 95px;
-      }
-
-      .sidebar {
-        display:none;
-      }
-
-      .main-content {
-        gap:14px;
-      }
-
-      .bottom-nav {
-        position:fixed;
-        bottom:0;
-        inset-inline:0;
-        z-index:500;
-        display:flex;
-        justify-content:space-around;
-        gap:3px;
-        padding:8px 5px calc(8px + env(safe-area-inset-bottom));
-        border-top:1px solid var(--border);
-        background:#07130df5;
-        backdrop-filter:blur(20px);
-      }
-
-      .bottom-nav .nav-item {
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        gap:4px;
-        min-height:54px;
-        padding:5px 4px;
-        font-size:10px;
-        text-align:center;
-      }
-
-      .bottom-nav .nav-item i {
-        font-size:17px;
-      }
-
-      .auth-layout {
-        grid-template-columns:1fr;
-        border-radius:23px;
-      }
-
-      .auth-visual {
-        display:none;
-      }
-
-      .auth-panel {
-        padding:26px 20px;
-      }
-
-      .welcome-card {
-        padding:20px;
-      }
-
-      .welcome-card h2 {
-        font-size:21px;
-      }
-
-      .page-heading h1 {
-        font-size:22px;
-      }
-
-      .card-pad {
-        padding:16px;
-      }
-
-      .composer {
-        padding:13px;
-      }
-
-      .post-card {
-        padding:14px;
-      }
-
-      .splash-logo {
-        width:100px;
-        height:100px;
-        border-radius:32px;
-      }
-
-      .splash-logo svg {
-        width:70px;
-        height:70px;
-      }
-
-      .splash-title {
-        font-size:32px;
-      }
-    }
-
-    @media(prefers-reduced-motion:reduce) {
-      *,*::before,*::after {
-        scroll-behavior:auto!important;
-        animation-duration:.01ms!important;
-        animation-iteration-count:1!important;
-        transition-duration:.01ms!important;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07130e">
+<title>NOVA — تجربة التواصل</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+:root{
+  --bg:#07130e;
+  --panel:#0e1e15;
+  --panel2:#13271b;
+  --border:#254633;
+  --green:#20d47b;
+  --text:#effff5;
+  --muted:#96b5a1;
+  --red:#ef5264;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Tahoma,sans-serif;
+}
+button,input{font:inherit}
+button{
+  cursor:pointer;
+  border:0;
+  border-radius:12px;
+  padding:12px 15px;
+  background:var(--green);
+  color:#062013;
+  font-weight:700;
+}
+button:disabled{opacity:.45;cursor:not-allowed}
+input{
+  width:100%;
+  padding:13px 14px;
+  border-radius:12px;
+  background:#07150d;
+  color:white;
+  border:1px solid var(--border);
+  outline:none;
+  min-width:0;
+}
+input:focus{border-color:var(--green)}
+button.secondary{background:#233b2b;color:white}
+button.danger{background:#a82d3d;color:white}
+button.ghost{background:transparent;color:var(--green);border:1px solid var(--border)}
+.app{max-width:1100px;margin:auto;padding:16px}
+.topbar{
+  display:flex;align-items:center;gap:12px;
+  padding:17px;background:var(--panel);
+  border:1px solid var(--border);border-radius:20px;
+}
+.logo{
+  display:grid;place-items:center;
+  width:48px;height:48px;border-radius:15px;
+  background:var(--green);color:#062013;
+  font-size:26px;font-weight:900;
+}
+.brand h1{font-size:21px;margin:0 0 5px}
+.brand p{font-size:12px;color:var(--muted);margin:0}
+.status{
+  margin-right:auto;
+  color:var(--muted);
+  font-size:12px;
+  overflow-wrap:anywhere;
+}
+.layout{
+  display:grid;
+  grid-template-columns:310px minmax(0,1fr);
+  gap:14px;margin-top:14px;
+}
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:18px;padding:16px;
+  min-width:0;
+}
+.card h2{font-size:16px;margin:0 0 14px}
+.field{margin:9px 0}
+.field label{
+  display:block;font-size:12px;color:var(--muted);
+  margin-bottom:6px;
+}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.actions button{flex:1}
+.note{
+  color:var(--muted);font-size:12px;line-height:1.8;
+  margin-top:12px;overflow-wrap:anywhere;
+}
+#authStatus{font-size:12px;color:var(--muted);line-height:1.8;margin-top:10px}
+.profileBox{
+  padding:12px;border-radius:14px;
+  background:var(--panel2);margin-bottom:12px;
+  overflow-wrap:anywhere;
+}
+.profileBox strong{display:block;margin-bottom:5px}
+.chatHeader{
+  display:flex;align-items:center;gap:10px;
+  padding-bottom:13px;margin-bottom:13px;
+  border-bottom:1px solid var(--border);
+}
+.avatar{
+  width:42px;height:42px;flex-shrink:0;
+  display:grid;place-items:center;
+  border-radius:50%;background:#234c35;
+  color:#a9f2c4;font-weight:bold;
+}
+.chatHeader h2{margin:0 0 4px}
+.chatHeader p{font-size:12px;color:var(--muted);margin:0}
+#messages{
+  height:350px;overflow-y:auto;
+  padding:12px;background:#08170f;
+  border-radius:14px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.empty{
+  color:var(--muted);font-size:13px;
+  text-align:center;margin:auto;line-height:1.9;
+}
+.msg{
+  max-width:85%;align-self:flex-start;
+  background:#1c3928;border-radius:14px;
+  padding:10px 13px;overflow-wrap:anywhere;
+  line-height:1.6;white-space:pre-wrap;
+}
+.msg.mine{align-self:flex-end;background:#126b43}
+.msg small{
+  display:block;font-size:10px;
+  color:#b5d9c1;margin-top:5px;
+}
+.composer{
+  display:flex;gap:8px;margin-top:10px;
+}
+.composer input{flex:1}
+.composer button{min-width:78px}
+.callBox{
+  margin-top:14px;padding:14px;
+  background:#09170f;border:1px solid var(--border);
+  border-radius:15px;
+}
+.callBox h3{font-size:15px;margin:0 0 12px}
+#callStatus{font-size:12px;color:var(--muted);line-height:1.8;margin:10px 0}
+.videos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+video{
+  width:100%;min-height:100px;max-height:230px;
+  object-fit:cover;background:#020604;border-radius:12px;
+}
+footer{text-align:center;color:#698a75;font-size:11px;padding:20px}
+.hidden{display:none!important}
+@media(max-width:760px){
+  .app{padding:9px}
+  .layout{grid-template-columns:1fr}
+  .status{max-width:125px;text-align:left}
+  #messages{height:42vh;min-height:240px}
+  .videos{grid-template-columns:1fr 1fr}
+}
+</style>
 </head>
 
 <body>
+<div class="app">
 
-  <!-- شاشة البداية -->
-
-  <section id="loading-screen" aria-label="جارٍ تشغيل نوفا">
-    <div class="splash-logo">
-      <svg viewBox="0 0 64 64" aria-label="NOVA">
-        <path d="M10 48V16a5 5 0 0 1 8.3-3.7L32 24.5l13.7-12.2A5 5 0 0 1 54 16v32h-9V27L32 38 19 27v21z" fill="currentColor"/>
-        <circle cx="50" cy="50" r="5" fill="#03160b" stroke="currentColor" stroke-width="2"/>
-      </svg>
+  <header class="topbar">
+    <div class="logo">N</div>
+    <div class="brand">
+      <h1>NOVA</h1>
+      <p>تجربة المراسلة والاتصال</p>
     </div>
+    <div id="connectionStatus" class="status">جاري تجهيز الاتصال...</div>
+  </header>
 
-    <div class="splash-title">NOVA</div>
-    <div class="splash-caption" id="splash-caption">عالمك، تواصلك، مجتمعك</div>
+  <main class="layout">
 
-    <div class="loader-track">
-      <div class="loader-progress"></div>
-    </div>
-  </section>
+    <aside>
+      <section class="card">
+        <h2>حسابك</h2>
 
-  <!-- تسجيل الدخول -->
+        <div class="field">
+          <label for="email">البريد الإلكتروني</label>
+          <input id="email" type="email" autocomplete="email" placeholder="name@example.com">
+        </div>
 
-  <section id="auth-screen" class="hidden">
-    <div class="auth-layout">
+        <div class="field">
+          <label for="password">كلمة المرور</label>
+          <input id="password" type="password" autocomplete="current-password" placeholder="6 أحرف على الأقل">
+        </div>
 
-      <aside class="auth-visual">
-        <div class="brand">
-          <div class="brand-icon">
-            <svg viewBox="0 0 64 64">
-              <path d="M10 48V16a5 5 0 0 1 8.3-3.7L32 24.5l13.7-12.2A5 5 0 0 1 54 16v32h-9V27L32 38 19 27v21z" fill="currentColor"/>
-            </svg>
+        <div class="actions">
+          <button id="registerBtn">إنشاء حساب</button>
+          <button id="loginBtn" class="secondary">دخول</button>
+        </div>
+
+        <div class="actions">
+          <button id="logoutBtn" class="ghost">تسجيل الخروج</button>
+        </div>
+
+        <div id="authStatus">لم يتم تسجيل الدخول بعد.</div>
+      </section>
+
+      <section class="card" style="margin-top:14px">
+        <h2>ابدأ محادثة</h2>
+
+        <div class="field">
+          <label for="username">اسم المستخدم الآخر</label>
+          <input id="username" placeholder="اكتب username">
+        </div>
+
+        <button id="openChatBtn" style="width:100%">بحث وفتح المحادثة</button>
+
+        <div class="note">
+          لازم يكون الطرف الآخر لديه حساب وملف مستخدم في NOVA.
+          استخدم اسم المستخدم وليس البريد الإلكتروني.
+        </div>
+
+        <div class="profileBox" style="margin-top:14px">
+          <strong>معرّف حسابك</strong>
+          <div id="myId" style="font-size:11px;overflow-wrap:anywhere">سجّل الدخول لعرض المعرّف.</div>
+          <button id="copyIdBtn" class="secondary" style="width:100%;margin-top:10px">
+            نسخ المعرّف
+          </button>
+        </div>
+      </section>
+    </aside>
+
+    <section class="card">
+      <div class="chatHeader">
+        <div class="avatar">N</div>
+        <div style="min-width:0">
+          <h2 id="chatTitle" style="font-size:16px">المحادثة</h2>
+          <p id="chatSubtitle">سجّل الدخول ثم ابحث عن مستخدم.</p>
+        </div>
+      </div>
+
+      <div id="messages">
+        <div class="empty">
+          أهلاً بك في NOVA<br>
+          سجّل الدخول وافتح محادثة للبدء.
+        </div>
+      </div>
+
+      <form id="messageForm" class="composer">
+        <input id="messageInput" maxlength="4000" placeholder="اكتب رسالتك..." autocomplete="off">
+        <button id="sendBtn" type="submit">إرسال</button>
+      </form>
+
+      <div class="callBox">
+        <h3>المكالمات الصوتية والفيديو</h3>
+
+        <div class="actions">
+          <button id="audioBtn">📞 صوتية</button>
+          <button id="videoBtn">🎥 فيديو</button>
+        </div>
+
+        <div class="actions">
+          <button id="acceptBtn" class="secondary">قبول مكالمة</button>
+          <button id="hangupBtn" class="danger">إنهاء</button>
+        </div>
+
+        <div id="callStatus">لا توجد مكالمة نشطة.</div>
+
+        <div class="videos">
+          <div>
+            <p style="font-size:11px;color:var(--muted);margin-bottom:6px">الكاميرا لديك</p>
+            <video id="localVideo" autoplay muted playsinline></video>
           </div>
           <div>
-            <div class="brand-name">NOVA SOCIAL</div>
-            <div class="brand-subtitle">تواصل بلا حدود</div>
+            <p style="font-size:11px;color:var(--muted);margin-bottom:6px">الطرف الآخر</p>
+            <video id="remoteVideo" autoplay playsinline></video>
           </div>
         </div>
 
-        <div class="visual-copy">
-          <h1>مساحتك الخاصة.<br>عالمك الاجتماعي.</h1>
-          <p>
-            تواصل مع الناس، شارك أفكارك ولحظاتك،
-            واكتشف مجتمعات جديدة في تجربة اجتماعية
-            مصممة لتكون أقرب إليك.
-          </p>
-        </div>
-
-        <div class="visual-pills">
-          <span class="pill"><i class="fa-solid fa-users"></i> مجتمعات</span>
-          <span class="pill"><i class="fa-solid fa-message"></i> محادثات</span>
-          <span class="pill"><i class="fa-solid fa-shield-halved"></i> حسابك الخاص</span>
-        </div>
-      </aside>
-
-      <div class="auth-panel">
-        <div class="brand">
-          <div class="brand-icon">
-            <svg viewBox="0 0 64 64">
-              <path d="M10 48V16a5 5 0 0 1 8.3-3.7L32 24.5l13.7-12.2A5 5 0 0 1 54 16v32h-9V27L32 38 19 27v21z" fill="currentColor"/>
-            </svg>
-          </div>
-          <div>
-            <div class="brand-name">NOVA</div>
-            <div class="brand-subtitle">أهلاً بيك في نوفا</div>
-          </div>
-        </div>
-
-        <h2 style="margin-top:28px">ابدأ رحلتك</h2>
-        <p class="muted small">سجّل دخولك أو أنشئ حسابًا جديدًا.</p>
-
-        <div class="auth-tabs">
-          <button type="button" class="auth-tab active" id="show-login-btn">تسجيل الدخول</button>
-          <button type="button" class="auth-tab" id="show-register-btn">إنشاء حساب</button>
-        </div>
-
-        <div id="login-message" class="auth-message hidden" role="status"></div>
-        <div id="register-message" class="auth-message hidden" role="status"></div>
-        <div id="reset-message" class="auth-message hidden" role="status"></div>
-
-        <form id="login-form">
-          <div class="field">
-            <label for="login-email">البريد الإلكتروني</label>
-            <input class="input" id="login-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
-          </div>
-
-          <div class="field">
-            <label for="login-password">كلمة المرور</label>
-            <input class="input" id="login-password" name="password" type="password" autocomplete="current-password" placeholder="أدخل كلمة المرور" required>
-          </div>
-
-          <button class="btn btn-primary btn-block" type="submit">
-            <i class="fa-solid fa-right-to-bracket"></i>
-            تسجيل الدخول
-          </button>
-
-          <button class="btn btn-block" type="button" id="forgot-password-btn" style="margin-top:9px">
-            نسيت كلمة المرور؟
-          </button>
-        </form>
-
-        <form id="register-form" class="hidden">
-          <div class="field">
-            <label for="register-name">الاسم الكامل</label>
-            <input class="input" id="register-name" name="full_name" autocomplete="name" placeholder="اسمك الذي سيظهر للناس" required>
-          </div>
-
-          <div class="field">
-            <label for="register-username">اسم المستخدم</label>
-            <input class="input" id="register-username" name="username" autocomplete="username" pattern="[a-zA-Z0-9_]{3,30}" placeholder="nova_user" required>
-            <span class="muted small">3 إلى 30 حرفًا إنجليزيًا أو رقمًا أو شرطة سفلية.</span>
-          </div>
-
-          <div class="field">
-            <label for="register-email">البريد الإلكتروني</label>
-            <input class="input" id="register-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
-          </div>
-
-          <div class="field">
-            <label for="register-password">كلمة المرور</label>
-            <input class="input" id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="8 أحرف على الأقل" required>
-          </div>
-
-          <button class="btn btn-primary btn-block" type="submit">
-            <i class="fa-solid fa-user-plus"></i>
-            إنشاء حساب
-          </button>
-        </form>
-
-        <form id="reset-form" class="hidden">
-          <div class="field">
-            <label for="reset-email">البريد الإلكتروني</label>
-            <input class="input" id="reset-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" required>
-          </div>
-
-          <button class="btn btn-primary btn-block" type="submit">
-            <i class="fa-solid fa-envelope"></i>
-            إرسال رابط الاستعادة
-          </button>
-
-          <button class="btn btn-block" type="button" id="reset-back-btn" style="margin-top:9px">
-            رجوع لتسجيل الدخول
-          </button>
-        </form>
-
-        <div class="auth-footer">
-          باستخدامك نوفا، أنت مسؤول عن بيانات حسابك ومحتواك.
+        <div class="note">
+          يجب السماح للمتصفح باستخدام الميكروفون والكاميرا.
+          المكالمات تحتاج HTTPS أو localhost، والطرف الآخر يجب أن يفتح المحادثة نفسها.
+          قد تحتاج بعض الشبكات إلى خادم TURN لتجاوز قيود الاتصال.
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- التطبيق بعد تسجيل الدخول -->
+  <footer>NOVA-SOCIAL · نسخة تجريبية مرتبطة بقاعدة البيانات</footer>
+</div>
 
-  <section id="app-screen" class="hidden">
+<script>
+(() => {
+  "use strict";
 
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-icon">
-          <svg viewBox="0 0 64 64">
-            <path d="M10 48V16a5 5 0 0 1 8.3-3.7L32 24.5l13.7-12.2A5 5 0 0 1 54 16v32h-9V27L32 38 19 27v21z" fill="currentColor"/>
-          </svg>
-        </div>
-        <div>
-          <div class="brand-name">NOVA SOCIAL</div>
-          <div class="brand-subtitle">مساحتك الاجتماعية</div>
-        </div>
-      </div>
+  /*
+    إعدادات مشروع NOVA-SOCIAL الذي تم العثور عليه.
+    المفتاح المستخدم هنا Publishable key مخصص للواجهة العامة.
+    لا تضع service_role أو أي مفتاح سري في هذا الملف.
+  */
+  const SUPABASE_URL = "https://cxksushmcuyomuaywgfw.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_6D7DE4aODAIqhG9Ls3gGfQ_Um-E-7f5";
 
-      <div class="topbar-actions">
-        <button class="icon-btn" type="button" data-nova-page="search" aria-label="البحث" title="البحث">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
+  const $ = id => document.getElementById(id);
 
-        <button class="icon-btn" type="button" data-nova-page="notifications" aria-label="الإشعارات" title="الإشعارات">
-          <i class="fa-regular fa-bell"></i>
-        </button>
+  let db = null;
+  let currentUser = null;
+  let currentProfile = null;
+  let currentConversation = null;
+  let currentPeer = null;
 
-        <button class="icon-btn" type="button" data-nova-page="profile" aria-label="الملف الشخصي" title="الملف الشخصي">
-          <i class="fa-regular fa-user"></i>
-        </button>
-      </div>
-    </header>
+  let messagesChannel = null;
+  let callChannel = null;
+  let polling = null;
 
-    <div class="app-layout">
+  let peerConnection = null;
+  let localStream = null;
+  let activeCallId = null;
+  let incomingOffer = null;
+  let callMode = "audio";
+  let lastMessageId = null;
+  let handlingOffer = false;
 
-      <aside class="sidebar">
-        <div class="card sidebar-card">
-          <div class="user-mini">
-            <div class="avatar" id="sidebar-avatar">N</div>
-            <div class="user-mini-info">
-              <strong id="sidebar-user-name">مستخدم نوفا</strong>
-              <span id="sidebar-user-handle">@nova</span>
-              <span id="current-user-email" class="hidden"></span>
-              <span id="current-user-id" class="hidden"></span>
-              <span id="user-email" class="hidden"></span>
-            </div>
-          </div>
-        </div>
+  const seenSignalIds = new Set();
 
-        <nav class="card sidebar-card nav-list" aria-label="القائمة الرئيسية">
-          <button type="button" class="nav-item active" data-nova-page="home">
-            <i class="fa-solid fa-house"></i> الرئيسية
-          </button>
-          <button type="button" class="nav-item" data-nova-page="search">
-            <i class="fa-solid fa-magnifying-glass"></i> اكتشف وابحث
-          </button>
-          <button type="button" class="nav-item" data-nova-page="messages">
-            <i class="fa-regular fa-comments"></i> الرسائل
-          </button>
-          <button type="button" class="nav-item" data-nova-page="notifications">
-            <i class="fa-regular fa-bell"></i> الإشعارات
-          </button>
-          <button type="button" class="nav-item" data-nova-page="communities">
-            <i class="fa-solid fa-people-group"></i> المجتمعات
-          </button>
-          <button type="button" class="nav-item" data-nova-page="profile">
-            <i class="fa-regular fa-user"></i> ملفي الشخصي
-          </button>
-          <button type="button" class="nav-item" data-nova-page="settings">
-            <i class="fa-solid fa-gear"></i> الإعدادات
-          </button>
-          <button type="button" class="nav-item" id="logout-btn">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i> تسجيل الخروج
-          </button>
-        </nav>
-      </aside>
+  function setConnection(text) {
+    $("connectionStatus").textContent = text;
+  }
 
-      <main class="main-content">
+  function setAuth(text) {
+    $("authStatus").textContent = text;
+  }
 
-        <!-- الرئيسية -->
+  function setCall(text) {
+    $("callStatus").textContent = text;
+  }
 
-        <section id="home-page" class="page-view" data-nova-page-view>
-          <div class="welcome-card card">
-            <h2 id="welcome-title">أهلاً بيك في نوفا 👋</h2>
-            <p>شارك أفكارك، تابع الناس اللي بتحب محتواهم، واكتشف مجتمعات تناسب اهتماماتك.</p>
-            <button type="button" class="btn btn-primary" data-nova-page="search">
-              <i class="fa-solid fa-compass"></i> اكتشف نوفا
-            </button>
-          </div>
+  function showError(error) {
+    console.error(error);
+    alert(error?.message || "حدث خطأ. افتح Console لمعرفة التفاصيل.");
+  }
 
-          <div class="card composer">
-            <div class="composer-top">
-              <div class="avatar" id="composer-avatar">N</div>
-              <textarea class="input" id="post-content" placeholder="إيه اللي حابب تشاركه النهارده؟" maxlength="5000"></textarea>
-            </div>
+  function requireLogin() {
+    if (!db) throw new Error("لم يتم الاتصال بخدمة قاعدة البيانات.");
+    if (!currentUser) throw new Error("سجّل الدخول أولًا.");
+  }
 
-            <div id="post-preview-container" class="hidden" style="margin-top:12px">
-              <img id="post-preview-image" class="post-media" alt="معاينة الصورة">
-              <button class="btn btn-danger" type="button" id="remove-post-image" style="margin-top:8px">
-                إزالة الصورة
-              </button>
-            </div>
+  function makeTime(date) {
+    return new Date(date || Date.now()).toLocaleTimeString("ar-EG", {
+      hour:"2-digit",
+      minute:"2-digit"
+    });
+  }
 
-            <div class="composer-bottom">
-              <label class="btn" for="post-image-input">
-                <i class="fa-regular fa-image"></i> إضافة صورة
-              </label>
-              <input id="post-image-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+  function showEmpty(text) {
+    const box = $("messages");
+    box.replaceChildren();
 
-              <button type="button" class="btn btn-primary" id="create-post-btn" data-auth-required>
-                <i class="fa-solid fa-paper-plane"></i> نشر
-              </button>
-            </div>
-          </div>
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = text;
+    box.appendChild(empty);
+  }
 
-          <div class="page-heading">
-            <div>
-              <h1>آخر المنشورات</h1>
-              <p class="muted small">المحتوى الذي تتم مشاركته على نوفا.</p>
-            </div>
-            <button class="icon-btn" type="button" id="nova-refresh-app" aria-label="تحديث">
-              <i class="fa-solid fa-rotate"></i>
-            </button>
-          </div>
+  function renderMessage(message) {
+    if (!message || !message.id) return;
+    if (document.querySelector('[data-message-id="' + message.id + '"]')) return;
 
-          <div id="feed-container" class="feed-list">
-            <div class="card empty-state">
-              <i class="fa-solid fa-seedling"></i>
-              <strong>أهلاً بيك في نوفا</strong>
-              <p>سجّل الدخول لعرض المنشورات والتفاعل مع المجتمع.</p>
-            </div>
-          </div>
+    const box = $("messages");
+    const empty = box.querySelector(".empty");
+    if (empty) box.replaceChildren();
 
-          <div id="feed-loading" class="muted small hidden" style="text-align:center;padding:15px">جارٍ تحميل المنشورات...</div>
-          <button class="btn btn-block hidden" type="button" id="load-more-posts">تحميل المزيد</button>
-        </section>
+    const bubble = document.createElement("div");
+    bubble.className = "msg" +
+      (message.sender_id === currentUser?.id ? " mine" : "");
+    bubble.dataset.messageId = message.id;
 
-        <!-- البحث -->
+    const body = document.createElement("div");
+    body.textContent = message.body || "";
 
-        <section id="search-page" class="page-view hidden" data-nova-page-view>
-          <div class="page-heading">
-            <div>
-              <h1>اكتشف نوفا</h1>
-              <p class="muted small">ابحث عن الأشخاص والمحتوى والمجتمعات.</p>
-            </div>
-          </div>
+    const time = document.createElement("small");
+    time.textContent = makeTime(message.created_at);
 
-          <div class="card card-pad">
-            <h2 class="section-title">البحث عن أشخاص</h2>
-            <form id="people-search-form" class="search-row">
-              <input id="people-search-input" class="input" type="search" placeholder="اسم الشخص أو اسم المستخدم">
-              <button class="btn btn-primary" type="submit">بحث</button>
-            </form>
-            <div id="people-search-results" class="list-results" style="margin-top:15px"></div>
-          </div>
+    bubble.append(body, time);
+    box.appendChild(bubble);
+    box.scrollTop = box.scrollHeight;
+    lastMessageId = message.id;
+  }
 
-          <div class="card card-pad">
-            <h2 class="section-title">المجتمعات</h2>
-            <p class="section-subtitle">اعثر على مجتمعات تشاركك اهتماماتك.</p>
-            <form id="community-search-form" class="search-row">
-              <input id="community-search-input" class="input" type="search" placeholder="ابحث عن مجتمع">
-              <button class="btn btn-primary" type="submit">بحث</button>
-            </form>
-            <div id="community-search-results" class="list-results" style="margin-top:15px"></div>
-          </div>
-        </section>
+  async function connect() {
+    if (!window.supabase?.createClient) {
+      throw new Error("لم يتم تحميل مكتبة Supabase. تحقق من اتصال الإنترنت.");
+    }
 
-        <!-- الرسائل -->
+    db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+      auth: {
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true
+      }
+    });
 
-        <section id="messages-page" class="page-view hidden" data-nova-page-view>
-          <div class="page-heading">
-            <div>
-              <h1>الرسائل</h1>
-              <p class="muted small">محادثاتك مع الأشخاص على نوفا.</p>
-            </div>
-          </div>
+    const { data, error } = await db.auth.getSession();
+    if (error) throw error;
 
-          <div class="card card-pad">
-            <div id="conversations-container" class="list-results">
-              <div class="empty-state">
-                <i class="fa-regular fa-comments"></i>
-                <strong>رسائلك هنا</strong>
-                <p>سجّل الدخول لعرض محادثاتك.</p>
-              </div>
-            </div>
-          </div>
+    setConnection("خدمة قاعدة البيانات جاهزة");
 
-          <div id="active-chat-panel" class="card card-pad hidden">
-            <div class="page-heading">
-              <div>
-                <h2 id="active-chat-name" class="section-title">المحادثة</h2>
-                <span id="active-chat-status" class="muted small"></span>
-              </div>
-              <button class="icon-btn" id="close-chat-btn" type="button" aria-label="إغلاق المحادثة">
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-            </div>
+    if (data.session?.user) {
+      await loadUser(data.session.user);
+    } else {
+      setAuth("اتصلت بالخدمة. أنشئ حسابًا أو سجّل الدخول.");
+    }
 
-            <div id="messages-container" class="feed-list" style="max-height:420px;overflow:auto;margin:15px 0"></div>
+    db.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT") {
+        currentUser = null;
+        currentProfile = null;
+        currentConversation = null;
+        currentPeer = null;
+        cleanupChannels();
+        showEmpty("سجّل الدخول لعرض محادثاتك.");
+        setAuth("تم تسجيل الخروج.");
+        $("myId").textContent = "لا يوجد مستخدم مسجل.";
+        $("chatTitle").textContent = "المحادثة";
+        $("chatSubtitle").textContent = "سجّل الدخول ثم ابحث عن مستخدم.";
+      } else if (session?.user && session.user.id !== currentUser?.id) {
+        loadUser(session.user).catch(showError);
+      }
+    });
+  }
 
-            <form id="send-message-form" class="search-row">
-              <input id="message-input" class="input" placeholder="اكتب رسالتك..." maxlength="5000" autocomplete="off">
-              <button class="btn btn-primary" type="submit" aria-label="إرسال">
-                <i class="fa-solid fa-paper-plane"></i>
-              </button>
-            </form>
-          </div>
-        </section>
+  async function loadUser(user) {
+    currentUser = user;
 
-        <!-- الإشعارات -->
+    const suggestedName = (user.email || "nova_user")
+      .split("@")[0]
+      .toLowerCase()
+      .replace(/[^a-z0-9_.]/g, "_")
+      .slice(0, 20) || "nova_user";
 
-        <section id="notifications-page" class="page-view hidden" data-nova-page-view>
-          <div class="page-heading">
-            <div>
-              <h1>الإشعارات</h1>
-              <p class="muted small">تابع التفاعلات والتنبيهات الخاصة بحسابك.</p>
-            </div>
-            <button type="button" class="btn" id="mark-notifications-read">
-              تحديد الكل كمقروء
-            </button>
-          </div>
+    const { data: existing, error: profileError } = await db
+      .from("profiles")
+      .select("id,username,display_name,avatar_url")
+      .eq("id", user.id)
+      .maybeSingle();
 
-          <div
+    if (profileError) throw profileError;
+
+    if (existing) {
+      currentProfile = existing;
+    } else {
+      const username = (suggestedName + "_" +
+        user.id.replace(/-/g, "").slice(0, 6)).slice(0, 30);
+
+      const { data: created, error } = await db
+        .from("profiles")
+        .insert({
+          id:user.id,
+          username,
+          display_name:suggestedName
+        })
+        .select("id,username,display_name,avatar_url")
+        .single();
+
+      if (error) {
+        throw new Error(
+          "تم تسجيل الدخول، لكن تعذر إنشاء ملف المستخدم. " +
+          "راجع صلاحيات INSERT في جدول profiles. التفاصيل: " + error.message
+        );
+      }
+
+      currentProfile = created;
+    }
+
+    $("myId").textContent = user.id;
+    setAuth("أهلًا " + (currentProfile.display_name || currentProfile.username) +
+      " · @" + currentProfile.username);
+
+    await updatePresence();
+    await setupIncomingCalls();
+    setConnection("متصل بقاعدة البيانات");
+  }
+
+  async function updatePresence() {
+    if (!currentUser) return;
+
+    const { error } = await db.from("user_presence").upsert({
+      user_id:currentUser.id,
+      status:"online",
+      last_seen_at:new Date().toISOString()
+    }, { onConflict:"user_id" });
+
+    if (error) {
+      console.warn("تعذر تحديث حالة الاتصال:", error.message);
+    }
+  }
+
+  async function register() {
+    if (!db) throw new Error("انتظر حتى يتم تجهيز الاتصال.");
+
+    const email = $("email").value.trim();
+    const password = $("password").value;
+
+    if (!email || password.length < 6) {
+      throw new Error("أدخل بريدًا صحيحًا وكلمة مرور من 6 أحرف على الأقل.");
+    }
+
+    const { data, error } = await db.auth.signUp({ email, password });
+    if (error) throw error;
+
+    if (data.session?.user) {
+      await loadUser(data.session.user);
+      alert("تم إنشاء الحساب بنجاح.");
+    } else {
+      alert("تم إرسال طلب التسجيل. إذا كان تأكيد البريد مفعّلًا، افتح بريدك وأكّد الحساب ثم سجّل الدخول.");
+    }
+  }
+
+  async function login() {
+    if (!db) throw new Error("انتظر حتى يتم تجهيز الاتصال.");
+
+    const email = $("email").value.trim();
+    const password = $("password").value;
+
+    if (!email || !password) {
+      throw new Error("اكتب البريد الإلكتروني وكلمة المرور.");
+    }
+
+    const { data, error } = await db.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) throw error;
+    await loadUser(data.user);
+  }
+
+  async function logout() {
+    if (!db) return;
+
+    await endCall(false);
+    await cleanupChannels();
+
+    const { error } = await db.auth.signOut();
+    if (error) throw error;
+
+    currentUser = null;
+    currentProfile = null;
+    currentConversation = null;
+    currentPeer = null;
+  }
+
+  async function cleanupChannels() {
+    if (polling) {
+      clearInterval(polling);
+      polling = null;
+    }
+
+    if (messagesChannel) {
+      await db.removeChannel(messagesChannel);
+      messagesChannel = null;
+    }
+
+    if (callChannel) {
+      await db.removeChannel(callChannel);
+      callChannel = null;
+    }
+  }
+
+  async function openChat() {
+    requireLogin();
+
+    const username = $("username").value.trim();
+
+    if (!username) throw new Error("اكتب اسم المستخدم الذي تريد مراسلته.");
+    if (username.toLowerCase() === currentProfile.username.toLowerCase()) {
+      throw new Error("لا يمكنك فتح محادثة مع نفسك.");
+    }
+
+    const { data: peer, error: peerError } = await db
+      .from("profiles")
+      .select("id,username,display_name,avatar_url")
+      .eq("username", username)
+      .maybeSingle();
+
+    if (peerError) throw peerError;
+    if (!peer) throw new Error("لم يتم العثور على المستخدم. تأكد من اسم المستخدم.");
+
+    currentPeer = peer;
+
+    /*
+      إنشاء محادثة جديدة بين الحسابين.
+      هذه النسخة لا تبحث عن محادثة قديمة، ولذلك قد تنشئ محادثة جديدة
+      كل مرة يُفتح فيها المستخدم نفسه.
+    */
+    const { data: conversation, error: conversationError } = await db
+      .from("conversations")
+      .insert({
+        kind:"direct",
+        title:null,
+        created_by:currentUser.id
+      })
+      .select("id,kind,title,created_by,created_at")
+      .single();
+
+    if (conversationError) {
+      throw new Error("تعذر إنشاء المحادثة: " + conversationError.message);
+    }
+
+    const { error: membersError } = await db
+      .from("conversation_members")
+      .insert([
+        {
+          conversation_id:conversation.id,
+          user_id:currentUser.id,
+          role:"admin"
+        },
+        {
+          conversation_id:conversation.id,
+          user_id:peer.id,
+          role:"member"
+        }
+      ]);
+
+    if (membersError) {
+      throw new Error(
+        "تم إنشاء المحادثة لكن تعذرت إضافة الأعضاء. " +
+        "راجع سياسة INSERT في conversation_members. " + membersError.message
+      );
+    }
+
+    currentConversation = conversation.id;
+    lastMessageId = null;
+
+    $("chatTitle").textContent = peer.display_name || peer.username;
+    $("chatSubtitle").textContent = "@" + peer.username;
+    showEmpty("جاري تحميل الرسائل...");
+
+    await subscribeToConversation();
+    await loadMessages();
+
+    setCall("المكالمات متاحة بعد فتح المحادثة على الجهازين.");
+  }
+
+  async function subscribeToConversation() {
+    if (messagesChannel) {
+      await db.removeChannel(messagesChannel);
+      messagesChannel = null;
+    }
+
+    if (callChannel) {
+      await db.removeChannel(callChannel);
+      callChannel = null;
+    }
+
+    const conversationId = currentConversation;
+
+    messagesChannel = db.channel("nova-messages-" + conversationId)
+      .on("postgres_changes", {
+        event:"INSERT",
+        schema:"public",
+        table:"messages",
+        filter:"conversation_id=eq." + conversationId
+      }, payload => {
+        if (currentConversation !== conversationId) return;
+        renderMessage(payload.new);
+      })
+      .subscribe();
+
+    /*
+      قناة الإشارات للمكالمات.
+      الطرفان يجب أن يكونا فاتحين المحادثة نفسها.
+    */
+    callChannel = db.channel("nova-call-" + conversationId)
+      .on("broadcast", { event:"signal" }, async ({ payload }) => {
+        try {
+          await handleSignal(payload);
+        } catch (error) {
+          showError(error);
+        }
+      })
+      .subscribe();
+
+    if (polling) clearInterval(polling);
+    polling = setInterval(() => {
+      if (currentConversation === conversationId) {
+        loadMessages().catch(error => console.warn(error));
+      }
+    }, 4000);
+  }
+
+  async function loadMessages() {
+    if (!currentUser || !currentConversation) return;
+
+    const { data, error } = await db
+      .from("messages")
+      .select("id,conversation_id,sender_id,body,message_type,created_at,deleted_at")
+      .eq("conversation_id", currentConversation)
+      .is("deleted_at", null)
+      .order("created_at", { ascending:true })
+      .limit(200);
+
+    if (error) throw error;
+
+    const box = $("messages");
+    if (!data.length) {
+      showEmpty("لا توجد رسائل حتى الآن. اكتب أول رسالة!");
+      lastMessageId = null;
+      return;
+    }
+
+    /*
+      إعادة بناء قائمة الرسائل تمنع تكرار الرسائل عند التحديث الدوري.
+    */
+    box.replaceChildren();
+    lastMessageId = null;
+    data.forEach(renderMessage);
+    box.scrollTop = box.scrollHeight;
+  }
+
+  async function sendMessage(event) {
+    event.preventDefault();
+    requireLogin();
+
+    if (!currentConversation) {
+      throw new Error("افتح محادثة أولًا بالبحث عن اسم المستخدم.");
+    }
+
+    const body = $("messageInput").value.trim();
+    if (!body) return;
+
+    const sendButton = $("sendBtn");
+    sendButton.disabled = true;
+
+    try {
+      const { data, error } = await db
+        .from("messages")
+        .insert({
+          conversation_id:currentConversation,
+          sender_id:currentUser.id,
+          body,
+          message_type:"text"
+        })
+        .select("id,conversation_id,sender_id,body,message_type,created_at,deleted_at")
+        .single();
+
+      if (error) throw error;
+
+      renderMessage(data);
+      $("messageInput").value = "";
+    } finally {
+      sendButton.disabled = false;
+      $("messageInput").focus();
+    }
+  }
+
+  async function broadcastSignal(type, payload = {}) {
+    if (!callChannel) throw new Error("افتح المحادثة أولًا.");
+
+    const result = await callChannel.send({
+      type:"broadcast",
+      event:"signal",
+      payload:{
+        type,
+        from:currentUser.id,
+        to:currentPeer?.id,
+        conversationId:currentConversation,
+        callId:activeCallId,
+        payload
+      }
+    });
+
+    if (result !== "ok") {
+      console.warn("حالة إرسال إشارة المكالمة:", result);
+    }
+  }
+
+  async function setupIncomingCalls() {
+    /*
+      الإشارات تُستقبل على قناة المحادثة المفتوحة.
+      لذلك لا تظهر مكالمة واردة إذا كان المستخدم خارج المحادثة.
+    */
+    setCall("افتح محادثة مع الطرف الآخر على الجهازين لاستقبال إشارات المكالمات.");
+  }
+
+  async function handleSignal(signal) {
+    if (!signal || !currentUser || signal.from === currentUser.id) return;
+    if (signal.to && signal.to !== currentUser.id) return;
+    if (signal.conversationId !== currentConversation) return;
+
+    const signature = signal.callId + ":" + signal.type + ":" + signal.from;
+    if (signal.type === "offer" && incomingOffer?.callId === signal.callId) return;
+
+    if (signal.type === "offer") {
+      if (peerConnection) await endCall(false);
+
+      incomingOffer = signal;
+      activeCallId = signal.callId;
+      callMode = signal.payload.mode || "audio";
+
+      setCall("مكالمة واردة من " +
+        (currentPeer?.display_name || currentPeer?.username || "المستخدم") +
+        ". اضغط «قبول مكالمة».");
+      return;
+    }
+
+    if (!peerConnection || signal.callId !== activeCallId) return;
+
+    if (signal.type === "answer") {
+      await peerConnection.setRemoteDescription(signal.payload);
+      setCall("تم قبول المكالمة. جاري الاتصال...");
+    } else if (signal.type === "ice") {
+      try {
+        await peerConnection.addIceCandidate(signal.payload);
+      } catch (error) {
+        console.warn("تعذر إضافة مرشح ICE:", error);
+      }
+    } else if (signal.type === "hangup") {
+      await endCall(false);
+      setCall("أنهى الطرف الآخر المكالمة.");
+    }
+  }
+
+  async function makePeerConnection() {
+    peerConnection = new RTCPeerConnection({
+      iceServers:[
+        { urls:"stun:stun.l.google.com:19302" }
+      ]
+    });
+
+    peerConnection.ontrack = event => {
+      if (event.streams && event.streams[0]) {
+        $("remoteVideo").srcObject = event.streams[0];
+      }
+    };
+
+    peerConnection.onicecandidate = event => {
+      if (event.candidate) {
+        broadcastSignal("ice", event.candidate.toJSON())
+          .catch(error => console.warn("ICE signal error:", error));
+      }
+    };
+
+    peerConnection.onconnectionstatechange = () => {
+      if (peerConnection) {
+        setCall("حالة الاتصال: " + peerConnection.connectionState);
+      }
+    };
+
+    localStream = await navigator.mediaDevices.getUserMedia({
+      audio:true,
+      video:callMode === "video" ? { facingMode:"user" } : false
+    });
+
+    $("localVideo").srcObject = localStream;
+
+    localStream.getTracks().forEach(track => {
+      peerConnection.addTrack(track, localStream);
+    });
+  }
+
+  async function startCall(mode) {
+    requireLogin();
+
+    if (!currentConversation || !currentPeer || !callChannel) {
+      throw new Error("افتح المحادثة مع الطرف الآخر أولًا.");
+    }
+
+    if (!navigator.mediaDevices?.getUserMedia) {
+      throw new Error("المتصفح لا يدعم الميكروفون أو الكاميرا هنا. افتح الموقع عبر HTTPS.");
+    }
+
+    if (peerConnection) await endCall(false);
+
+    callMode = mode;
+    activeCallId = crypto.randomUUID();
+
+    try {
+      await makePeerConnection();
+
+      const offer = await peerConnection.createOffer();
+      await peerConnection.setLocalDescription(offer);
+
+      await broadcastSignal("offer", {
+        mode,
+        description:peerConnection.localDescription
+      });
+
+      setCall(mode === "video"
+        ? "تم إرسال طلب مكالمة فيديو. انتظر قبول الطرف الآخر."
+        : "تم إرسال طلب مكالمة صوتية. انتظر قبول الطرف الآخر.");
+    } catch (error) {
+      await endCall(false);
+      throw error;
+    }
+  }
+
+  async function acceptCall() {
+    requireLogin();
+
+    if (!incomingOffer) throw new Error("لا توجد مكالمة واردة.");
+    if (!navigator.mediaDevices?.getUserMedia) {
+      throw new Error("المتصفح لا يدعم الميكروفون أو الكاميرا هنا.");
+    }
+
+    if (peerConnection) await endCall(false);
+
+    const offerSignal = incomingOffer;
+    incomingOffer = null;
+    activeCallId = offerSignal.callId;
+    callMode = offerSignal.payload.mode || "audio";
+
+    try {
+      await makePeerConnection();
+
+      await peerConnection.setRemoteDescription(
+        offerSignal.payload.description
+      );
+
+      const answer = await peerConnection.createAnswer();
+      await peerConnection.setLocalDescription(answer);
+
+      await broadcastSignal("answer", peerConnection.localDescription);
+
+      setCall("تم قبول المكالمة. جاري الاتصال...");
+    } catch (error) {
+      await endCall(false);
+      throw error;
+    }
+  }
+
+  async function endCall(notify = true) {
+    if (notify && activeCallId && callChannel) {
+      try {
+        await broadcastSignal("hangup", {});
+      } catch (error) {
+        console.warn("تعذر إرسال إنهاء المكالمة:", error);
+      }
+    }
+
+    if (peerConnection) {
+      peerConnection.ontrack = null;
+      peerConnection.onicecandidate = null;
+      peerConnection.close();
+      peerConnection = null;
+    }
+
+    if (localStream) {
+      localStream.getTracks().forEach(track => track.stop());
+      localStream = null;
+    }
+
+    $("localVideo").srcObject = null;
+    $("remoteVideo").srcObject = null;
+
+    activeCallId = null;
+    incomingOffer = null;
+    handlingOffer = false;
+
+    if ($("callStatus").textContent !== "أنهى الطرف الآخر المكالمة.") {
+      setCall("لا توجد مكالمة نشطة.");
+    }
+  }
+
+  $("registerBtn").addEventListener("click", () => register().catch(showError));
+  $("loginBtn").addEventListener("click", () => login().catch(showError));
+  $("logoutBtn").addEventListener("click", () => logout().catch(showError));
+  $("openChatBtn").addEventListener("click", () => openChat().catch(showError));
+  $("messageForm").addEventListener("submit", event => sendMessage(event).catch(showError));
+  $("audioBtn").addEventListener("click", () => startCall("audio").catch(showError));
+  $("videoBtn").addEventListener("click", () => startCall("video").catch(showError));
+  $("acceptBtn").addEventListener("click", () => acceptCall().catch(showError));
+  $("hangupBtn").addEventListener("click", () => endCall(true).catch(showError));
+
+  $("copyIdBtn").addEventListener("click", async () => {
+    if (!currentUser) {
+      alert("سجّل الدخول أولًا.");
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(currentUser.id);
+      alert("تم نسخ معرّف حسابك.");
+    } catch {
+      prompt("انسخ معرّف حسابك:", currentUser.id);
+    }
+  });
+
+  window.addEventListener("beforeunload", () => {
+    if (localStream) localStream.getTracks().forEach(track => track.stop());
+    if (peerConnection) peerConnection.close();
+  });
+
+  connect().catch(error => {
+    setConnection("تعذر الاتصال");
+    showError(error);
+  });
+})();
+</script>
+</body>
+  </html>
